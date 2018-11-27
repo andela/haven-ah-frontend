@@ -1,0 +1,49 @@
+{
+  "name": "haven-ah-frontend",
+  "version": "1.0.0",
+  "description": "A platform for the creative at heart",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "webpack-dev-server --config webpack.config.dev.js --open --hot",
+    "start": "npm run build && node dist/server.js",
+    "build": "webpack --config webpack.config.prod.js && babel server.js --out-file dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela/haven-ah-frontend.git"
+  },
+  "author": "Team Haven",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andela/haven-ah-frontend/issues"
+  },
+  "homepage": "https://github.com/andela/haven-ah-frontend#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.1",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.22.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10",
+    "webpack-merge": "^4.1.4"
+  }
+}

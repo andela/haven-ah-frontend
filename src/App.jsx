@@ -5,9 +5,9 @@ import '../public/styles/App.css';
 class App extends Component {
   render() {
     return (
-            <div>
-                <h1>Authors Haven App!</h1>
-            </div>
+      <div>
+        <h1>Authors Haven App!</h1>
+      </div>
     );
   }
 }

@@ -1,0 +1,15 @@
+$navbar-background: #fff !important;
+$navbar-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
+$navbar-transition: all 2.25s ease-in-out;
+$brand-color: #777;
+$brand-size: 30px;
+
+.nav {
+  background: $navbar-background;
+  box-shadow: $navbar-box-shadow;
+  transition: $navbar-transition;
+}
+.navbar-brand > .navbar-item {
+  color: $brand-color;
+  font-size: $brand-size;
+}

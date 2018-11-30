@@ -10,18 +10,26 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /(\.scss$|\.css$)/,
+        test: /(\.s[ac]ss$|\.css$)/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(jpe?g|gif|png)$/,
+        test: /\.(jpe?g|gif|png|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
         loader: 'file-loader?name=images/[name].[ext]',
       },
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['env', 'react'],
+          plugins: ['transform-class-properties']
+        }
       },
+      {
+        test: /\.(js|jsx)$/,
+        use: ['eslint-loader']
+      }
     ],
   },
   devServer: {

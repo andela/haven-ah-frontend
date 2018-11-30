@@ -78,5 +78,17 @@
             "ClassDeclaration": false
           }
         }]
+      },
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [
+              ".js",
+              ".jsx",
+              ".css",
+              ".scss"
+            ]
+          }
+        }
       }
     }

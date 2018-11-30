@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
-import CommonNavItems from './commonNavItems.jsx';
-import UserNavItems from './userNavItems.jsx';
-import GuestNavItems from './guestNavItems.jsx';
+import CommonNavItems from './commonNavItems';
+import UserNavItems from './userNavItems';
+import GuestNavItems from './guestNavItems';
 import './navbar.scss';
 
 class NavBar extends Component {

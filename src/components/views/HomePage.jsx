@@ -1,14 +1,18 @@
 import React, { PureComponent } from 'react';
-import Navbar from '../containers/navbar/navbar.jsx';
-import HeroSection from '../hero-section/HeroSection.jsx';
+import HeroSection from '../hero-section/HeroSection';
+import Navbar from '../containers/navbar/navbar';
+import FeaturedAuthor from '../containers/featuredAuthor/FeaturedAuthor';
 
 class HomePage extends PureComponent {
   render() {
     return (
-      <header className="banner">
-        <Navbar navStyle="transparent" isLoggedIn/>
-        <HeroSection />
-      </header>
+      <div className="layout">
+        <header className="banner">
+          <Navbar navStyle="transparent" isLoggedIn />
+          <HeroSection />
+        </header>
+        <FeaturedAuthor />
+      </div>
     );
   }
 }

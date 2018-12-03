@@ -1,9 +1,10 @@
-/*ah-card*/
+@import '../../../public/styles/colors.scss';
+
 .ah-card {
     position: relative;
     margin-top: 20px;
-
 }
+
 .ah-card__details {
     position: absolute;
     left: 5%;
@@ -11,18 +12,11 @@
     top: 60%;
     border-radius: 10px; 
     width: 90%;
-    background-color: #fff;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.12);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.12);
-  -ms-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.12);
-  -o-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.12);
+    background-color:$white-color;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.12);
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
+
 .ah-card__details:hover {
     top: 0;
     width: 100%;
@@ -30,20 +24,24 @@
     left: 0;
     transition: all 1s ease;
 }
+
 .ah-card__description {
     line-height: 160%;
-    color: #777;
+    color:$medium-gray;
 }
+
 .ah-card__title > h1 {
     font-weight: 900;
     line-height: 150%;
     padding-bottom: 5px;
 }
+
 .ah-card__bookmark:hover {
-    color: #a0a0a0;
+    color:$dark-gray;
     transition:color ease-out .1s;
     cursor: pointer;
 }
+
 .circular-avatar {
     height: 40px;
     width: 40px;
@@ -54,6 +52,7 @@
     display: flex;
     justify-content: start;
 }
+
 .ah-card__image {
     width:100%;
     height: 180px;
@@ -61,14 +60,16 @@
     background-repeat: no-repeat;
     border-radius: 10px;
 }
+
 .ah-card__image-container {
  width: 100%;
     height: 180px;
 }
+
 .ah-card__author-name {
-    
      margin-top:10px;
 }
+
 .ah-card__bookmark {
     margin-top:10px;
 }

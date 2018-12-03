@@ -9,7 +9,7 @@ import {
 
 const fetchTrendingArticles = () => {
   return axios.get(
-    'https://haven-ah-backend-staging.herokuapp.com/api/v1/articles'
+    `${process.env.API_URL}/articles`
   );
 };
 

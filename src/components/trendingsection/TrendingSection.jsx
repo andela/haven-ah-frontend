@@ -2,9 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { trendingArticlesAction } from '../../actions/trendingArticlesAction';
-import TrendingCard from './TrendingCard.jsx';
-
-import 'bulma/css/bulma.min.css';
+import TrendingCard from './TrendingCard';
 import './TrendingSection.scss';
 
 class TrendingSection extends PureComponent {
@@ -14,7 +12,6 @@ class TrendingSection extends PureComponent {
 
   render() {
     const { articles } = this.props;
-    console.log(articles);
     return (
       <section className="section mobile-section">
         <div className="container">

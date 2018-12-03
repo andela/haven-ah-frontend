@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import defaultImage from '../../../public/images/empty.jpeg';
-import timeFormatter from '../../helpers/timeFormatter.jsx';
-
-const { log } = console;
+import timeFormatter from '../../helpers/timeFormatter';
 
 const TrendingCard = (props) => {
   const {
     readtime, title, description, images
   } = props;
-  log('The images: ', images);
   return (
     <div className="column">
       <div className="ah-card">
         <div className="ah-card__image"
-          style={{ backgroundImage: `url(${images[0] || defaultImage})` }} />
+          style={{ backgroundImage: `url(${(images && images[0]) || defaultImage})` }}/>
         <div className="ah-card__details p-1">
           <div className="ah-card__space">
             <div className="ah-card__reaction">
@@ -56,9 +53,14 @@ const TrendingCard = (props) => {
 };
 
 TrendingCard.propTypes = {
-  readtime: PropTypes.number,
-  title: PropTypes.string,
-  description: PropTypes.string,
+  readtime: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   images: PropTypes.array
 };
+
+TrendingCard.defaultProps = {
+  images: defaultImage
+};
+
 export default TrendingCard;

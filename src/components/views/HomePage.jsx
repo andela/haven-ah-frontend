@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import HeroSection from '../hero-section/HeroSection';
 import Navbar from '../containers/navbar/navbar';
 import FeaturedAuthor from '../containers/featuredAuthor/FeaturedAuthor';
+import TrendingSection from '../trendingsection/TrendingSection';
 
 class HomePage extends PureComponent {
   render() {
@@ -11,6 +12,7 @@ class HomePage extends PureComponent {
           <Navbar navStyle="transparent" isLoggedIn />
           <HeroSection />
         </header>
+        <TrendingSection />
         <FeaturedAuthor />
       </div>
     );

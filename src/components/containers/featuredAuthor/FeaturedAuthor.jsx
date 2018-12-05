@@ -144,5 +144,4 @@ const mapStateToProps = state => ({
   error: state.featuredAuthor.error,
 });
 
-
 export default connect(mapStateToProps, actions)(FeaturedAuthor);

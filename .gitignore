@@ -39,3 +39,5 @@ dist/
 
 # vs code file
 .vscode
+dist
+.DS_Store

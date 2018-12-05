@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import 'bulma/css/bulma.min.css';
 import './HeroSection.scss';
 import { heroArticleAction } from '../../actions/heroArticleAction';
 

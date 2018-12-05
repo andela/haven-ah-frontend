@@ -1,21 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif');
 @import url('https://fonts.googleapis.com/css?family=Sunflower:300');
+@import './colors.scss';
 
 $heading-font-family: 'Playfair Display', sans-serif;
 $body-content-font: 'Noto Serif', sans-serif;
 $header-background-image: linear-gradient(to right bottom, 
     rgba(0, 0, 0, 0.5), 
     rgba(0, 0, 0, 0.5)), 
-    url('../images/banner/landing.jpeg');
-
-$orange-color:  #E47E08;
-$red-color: red;
-$icon-grey: #BEBEBE;
-$white-color: #fff;
-$white-grey: #eee;
-$facebook-blue: rgb(42, 84, 168);
-$hover-black: rgba(0,0,0,0.2);
+    url('../images/bg.jpg');
 
 body {
     padding: 0;
@@ -47,15 +40,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .facebook:hover {
-    color: rgba(42, 84, 168, 0.8);
+    color: $facebook-blue-hover;
 }
 
 .twitter{
-    color: rgb(29, 161, 242);
+    color:$twitter-color;
 }
 
 .twitter:hover{
-    color: rgba(29, 161, 242, 0.8);
+    color:$twitter-color-hover;
 }
 
 /*buttons*/
@@ -202,9 +195,14 @@ h1, h2, h3, h4, h5, h6 {
 .fonticons-20 {
     font-size: 20px;
 }
-
 .transparent {
     background-color: transparent !important;
+}
+.pb--5 {
+  padding-bottom: .6rem;
+}
+.pb--15 {
+  padding-bottom: 1.5rem;
 }
 
 .display-center {

@@ -2,33 +2,34 @@ import configureStore from 'redux-mock-store';
 import createSagaMiddleware from 'redux-saga';
 import mockAxios from '../../../__mocks__/axios';
 import rootSaga from '../../sagas';
-
 import {
-  FEATURED_AUTHOR_REQUEST,
-  FEATURED_AUTHOR_SUCCESS,
-} from '../../actionTypes/featuredAuthorActionTypes';
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+} from '../../actionTypes/loginActionType';
 
 const sagaMiddleware = createSagaMiddleware();
 const mockStore = configureStore([sagaMiddleware]);
 
-describe('Featured author Saga:', () => {
-  mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+describe('Login saga', () => {
+  mockAxios.post.mockImplementationOnce(() => Promise.resolve({
     data: {
       status: 200,
-      data: {}
+      data: {
+        token: ''
+      }
     }
   }));
 
-  it('should execute saga workers', async (done) => {
+  it('should dispatch the login request action', async (done) => {
     const store = mockStore({});
     sagaMiddleware.run(rootSaga);
 
     const expectedActions = [
-      { type: FEATURED_AUTHOR_REQUEST },
-      { type: FEATURED_AUTHOR_SUCCESS, data: {} },
+      { type: LOGIN_REQUEST, payload: {} },
+      { type: LOGIN_SUCCESS, payload: '' },
     ];
 
-    store.dispatch({ type: FEATURED_AUTHOR_REQUEST });
+    store.dispatch({ type: LOGIN_REQUEST, payload: {} });
 
     store.subscribe(() => {
       const actions = store.getActions();

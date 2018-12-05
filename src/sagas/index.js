@@ -3,6 +3,7 @@ import watchHeroArticle from './heroArticleSaga';
 import watchTrendingArticles from './trendingArticlesSaga';
 import watchGetFeaturedAuthor from './featuredAuthorSaga';
 import watchRecentArticles from './recentArticlesSaga';
+import watchLoginSaga from './loginSaga';
 
 /**
  * The root saga
@@ -13,7 +14,7 @@ function* rootSaga() {
     watchTrendingArticles(),
     watchGetFeaturedAuthor(),
     watchRecentArticles(),
-
+    watchLoginSaga(),
   ]);
 }
 

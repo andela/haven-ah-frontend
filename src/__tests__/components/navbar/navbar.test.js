@@ -5,15 +5,19 @@ import Navbar from '../../../components/containers/navbar/navbar';
 
 afterEach(cleanup);
 
+const props = {
+  isLoggedIn: false,
+};
+
 describe('Navbar', () => {
   it('should render without crashing', () => {
-    render(<Router><Navbar /></Router>);
+    render(<Router><Navbar {...props}/></Router>);
   });
 });
 
 describe('Navbar', () => {
   it('should contain header text', () => {
-    const { getByText } = render(<Router><Navbar /></Router>);
+    const { getByText } = render(<Router><Navbar {...props}/></Router>);
     const header = getByText('Haven');
     const headerText = header.textContent;
 
@@ -23,7 +27,7 @@ describe('Navbar', () => {
 
   it('should contain a clickable burger', () => {
     const handleClick = jest.fn();
-    const { getByTestId } = render(<Router><Navbar /></Router>);
+    const { getByTestId } = render(<Router><Navbar {...props}/></Router>);
     const burger = getByTestId('burger');
     burger.onclick = handleClick;
     fireEvent.click(burger);

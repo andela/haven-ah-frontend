@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from './components/views/HomePage';
+import Register from './components/views/RegisterPage';
+import confirmEmail from './components/containers/confirmEmail';
 
 import Login from './components/views/LoginPage';
 
@@ -10,6 +12,8 @@ const Routes = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/home" component={Home} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Register} />
+      <Route exact path="/confirm/" component={confirmEmail} />
       <Redirect to="/" />
     </Switch>
   </div>

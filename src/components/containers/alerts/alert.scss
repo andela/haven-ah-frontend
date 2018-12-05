@@ -1,9 +1,12 @@
 @import './../../../../public/styles/colors.scss';
 
+$light-red: rgb(255, 93, 93);
+$light-green: rgb(181, 228, 181);
+
+
 .alert {
   border-bottom-left-radius: 500px;
   border-bottom-right-radius: 500px;
-
   padding: 10px 20px;
   text-align: center;
   color: white;
@@ -14,6 +17,11 @@
   position: fixed;
   top: 50px;
   right: 250px;
+  animation: fadeIn 2s;
+  opacity: 1;
+  position: fixed;
+  top: 50px;
+  right: 100px;
   z-index: 1000;
 }
 
@@ -35,3 +43,4 @@
     opacity: 1;
   }
 }
+

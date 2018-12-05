@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import HeroSection from '../hero-section/HeroSection';
 import Navbar from '../containers/navbar/navbar';
+import RecentArticles from '../containers/recentArticles/RecentArticles';
 import FeaturedAuthor from '../containers/featuredAuthor/FeaturedAuthor';
 import TrendingSection from '../trendingsection/TrendingSection';
 
@@ -14,6 +15,7 @@ class HomePage extends PureComponent {
         </header>
         <TrendingSection />
         <FeaturedAuthor />
+        <RecentArticles />
       </div>
     );
   }

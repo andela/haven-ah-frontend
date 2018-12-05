@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
 import heroArticleReducer from './heroArticleReducer';
-import featuredAuthorReducer from './featuredAuthor';
 import trendingArticlesReducer from './trendingArticlesReducer';
+import featuredAuthorReducer from './featuredAuthor';
+import recentArticlesReducer from './recentArticlesReducer';
+
 
 export default combineReducers({
   heroArticle: heroArticleReducer,
-  featuredAuthor: featuredAuthorReducer,
   trendingArticles: trendingArticlesReducer,
+  featuredAuthor: featuredAuthorReducer,
+  recentArticles: recentArticlesReducer,
 });

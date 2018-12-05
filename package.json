@@ -21,7 +21,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bulma": "^0.7.2",
-    "dotenv-webpack": "^1.5.7",
     "express": "^4.16.4",
     "font-awesome": "^4.7.0",
     "prop-types": "^15.6.2",

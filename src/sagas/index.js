@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
 
 import watchHeroArticle from './heroArticleSaga';
+import watchGetFeaturedAuthor from './featuredAuthorSaga';
 
 /**
  * The root saga
@@ -8,6 +9,7 @@ import watchHeroArticle from './heroArticleSaga';
 function* rootSaga() {
   yield all([
     watchHeroArticle(),
+    watchGetFeaturedAuthor(),
   ]);
 }
 

@@ -3,24 +3,27 @@
 @import url('https://fonts.googleapis.com/css?family=Sunflower:300');
 
 $heading-font-family: 'Playfair Display', sans-serif;
+$body-content-font: 'Noto Serif', sans-serif;
 $header-background-image: linear-gradient(to right bottom, 
     rgba(0, 0, 0, 0.5), 
     rgba(0, 0, 0, 0.5)), 
     url('../images/banner/landing.jpeg');
+
 $orange-color:  #E47E08;
 $red-color: red;
 $icon-grey: #BEBEBE;
 $white-color: #fff;
 $white-grey: #eee;
-$facebook-blue: #4267b2;
+$facebook-blue: rgb(42, 84, 168);
 $hover-black: rgba(0,0,0,0.2);
 
 body {
     padding: 0;
     margin: 0;
-    font-family: $heading-font-family;
-    font-family: 'Noto Serif', sans-serif;
+    font-family: $body-content-font;
+    background-color: $white-color;
 }
+
 h1, h2, h3, h4, h5, h6 {
     font-family: $heading-font-family;
 }
@@ -34,21 +37,46 @@ h1, h2, h3, h4, h5, h6 {
     background-position: top;
 }
 
+/*colors*/
+.ah-orange {
+    color: $orange-color;
+}
+
+.facebook {
+    color: $facebook-blue;
+}
+
+.facebook:hover {
+    color: rgba(42, 84, 168, 0.8);
+}
+
+.twitter{
+    color: rgb(29, 161, 242);
+}
+
+.twitter:hover{
+    color: rgba(29, 161, 242, 0.8);
+}
+
 /*buttons*/
 .is-orange {
     background-color: $orange-color;
     color: $white-color;
     border: none;
 }
+
 .is-orange:hover {
     color: $white-grey;
 }
+
 .icon-grey {
     color: $icon-grey;
 }
+
 .icon-red {
     color: $red-color;
 }
+
 /*btn*/
 .btn:link, 
 .btn:visited {
@@ -60,20 +88,24 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 100px;
     transition: all .2s;
 }
+
 .btn-white {
     margin-top: 40px;
     background-color: $orange-color;
     color: $white-color;
 }
+
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px $hover-black;
     color: $white-grey;
 }
+
 .btn:active {
     transform: translateY(-1px);
     box-shadow: 0 5px 10px $hover-black;
 }
+
 .btn::after {
     position: absolute;
     content: "";
@@ -86,6 +118,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: -1;
     transition:  all .4s;
 }
+
 .btn-white::after {
     background-color: $white-color;
 }
@@ -94,6 +127,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: scaleX(1.4) scaleY(1.6);
     opacity: 0;
 }
+
 @keyframes moveButton {
     0% {
         opacity: 0;
@@ -104,22 +138,10 @@ h1, h2, h3, h4, h5, h6 {
         transform: translate(0);
     }
 }
+
 .btn-animated {
     animation: moveButton .5s ease-out .75s;
     animation-fill-mode: backwards;
-}
-
-
-/*colors*/
-.ah-orange {
-    color: $orange-color;
-}
-.facebook {
-    background: $facebook-blue;
-    color: $white-color;
-}
-.facebook:hover {
-    color: $white-grey;
 }
 
 /*utilities*/
@@ -127,43 +149,64 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: space-between;
 }
+
 .justify-content__start {
     display: flex;
     justify-content: start;
 }
+
 .transparent {
     background-color: transparent !important;
 }
+
 .mt-0 {
     margin-top: 0.5rem;
 }
+
 .mt-1{
     margin-top: 1rem;
 }
+
 .mt-3{
     margin-top: 3rem;
 }
+
 .mt-4{
     margin-top: 4rem;
 }
+
 .mt-5{
     margin-top: 5rem;
 }
+
 .mt-6{
     margin-top: 6rem;
 }
+
 .mb-1 {
     margin-bottom: 1rem;
 }
+
 .ml-1 {
     margin-left: 1rem;
 }
+
+.p-0 {
+    padding-bottom: 0;
+}
+
 .p-1 {
     padding: 1rem 1rem 0rem 1rem;
 }
+
 .fonticons-20 {
     font-size: 20px;
 }
+
+.transparent {
+    background-color: transparent !important;
+}
+
 .display-center {
     display: flex;
     justify-content: center;

@@ -4,15 +4,13 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import rootReducer from './reducers';
 import rootSaga from './sagas';
 
-const sagaMiddleware = createSagaMiddleware();
 const initialState = {};
 
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
   initialState,
-  composeWithDevTools(
-    applyMiddleware(sagaMiddleware)
-  ),
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
 
 sagaMiddleware.run(rootSaga);

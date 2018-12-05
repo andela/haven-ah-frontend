@@ -5,6 +5,7 @@ import { PropTypes } from 'prop-types';
 import { loginRequestAction } from '../../actions/loginActions';
 import validateSignIn from '../../utilities/validateInput';
 import AlertBox from '../containers/alerts/AlertBox';
+import SocialAuth from '../containers/auth/SocialAuth';
 
 class Login extends Component {
   state = {
@@ -71,22 +72,8 @@ class Login extends Component {
                     <span className="ah-orange">Haven</span>
                   </h1>
                   <p className="has-text-centered">fill in your details</p>
-                  <div className="mt-1">
-                    <a className="button is-medium is-fullwidth">
-                      <span className="icon is-medium has-text-danger">
-                        <i className="fa fa-google" />
-                      </span>
-                      <span>Sign in with Google</span>
-                    </a>
-                  </div>
-                  <div className="mt-1 mb-1">
-                    <a className="button is-medium is-fullwidth facebook-btn">
-                      <span className="icon is-medium">
-                        <i className="fa fa-facebook" />
-                      </span>
-                      <span>Sign in with Facebook</span>
-                    </a>
-                  </div>
+
+                  <SocialAuth authType={'Sign in'} />
                   <div className="line" />
                   <form className="form" onSubmit={this.submit}>
                     <div className="field">

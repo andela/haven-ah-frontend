@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
-import FeaturedAuthorComponent from '../../../components/containers/featuredAuthor/FeaturedAuthor';
+import FeaturedAuthorComponent from
+  '../../../components/containers/featuredAuthor/FeaturedAuthor';
 import store from '../../../store';
 
 afterEach(cleanup);

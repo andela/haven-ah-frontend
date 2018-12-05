@@ -5,7 +5,16 @@ import Register from './components/views/RegisterPage';
 import confirmEmail from './components/containers/confirmEmail';
 import ArticlePage from './components/views/ArticlePage';
 
+import checkAuth from './utilities/authHandler';
 import Login from './components/views/LoginPage';
+
+const signupOrRedirect = () => {
+  return checkAuth(<Register />);
+};
+
+const loginOrRedirect = () => {
+  return checkAuth(<Login />);
+};
 
 const Routes = () => (
   <div>
@@ -13,9 +22,10 @@ const Routes = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/home" component={Home} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/signup" component={Register} />
       <Route exact path="/confirm/" component={confirmEmail} />
       <Route path="/articles" component={ArticlePage} />
+      <Route exact path="/signup" component={signupOrRedirect} />
+      <Route exact path="/login" component={loginOrRedirect} />
       <Redirect to="/" />
     </Switch>
   </div>

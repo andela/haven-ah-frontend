@@ -11,7 +11,10 @@ const TrendingCard = (props) => {
     <div className="column">
       <div className="ah-card">
         <div className="ah-card__image"
-          style={{ backgroundImage: `url(${(images && images[0]) || defaultImage})` }}/>
+          style={{
+            backgroundImage:
+          `url(${(images && images[0]) || defaultImage})`
+          }}/>
         <div className="ah-card__details p-1">
           <div className="ah-card__space">
             <div className="ah-card__reaction">

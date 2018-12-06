@@ -6,7 +6,9 @@
   "scripts": {
     "start:dev": "webpack-dev-server --config webpack.config.dev.js --open --hot",
     "start": "npm run build && node dist/server.js",
-    "test": "jest --coverage",
+    "test": "jest --updateSnapshot --coverage",
+    "e2e-setup": "selenium-standalone install",
+    "nightwatch": "nightwatch -c nightwatch.conf.js -e chrome,firefox,safari",
     "build": "webpack --config webpack.config.prod.js && babel server.js --out-file dist/server.js"
   },
   "repository": {
@@ -37,12 +39,15 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^7.1.5",
+    "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "chromedriver": "^2.44.1",
     "css-loader": "^1.0.1",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -51,15 +56,31 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "file-loader": "^2.0.0",
+    "geckodriver": "^1.14.1",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "node-sass": "^4.10.0",
+    "react-testing-library": "^5.3.1",
+    "redux-mock-store": "^1.5.3",
     "sass-loader": "^7.1.0",
+    "selenium-server": "^3.141.59",
+    "selenium-standalone": "^6.15.4",
     "style-loader": "^0.23.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.22.0",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.4"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+    },
+    "testPathIgnorePatterns": [
+      "./*/nightwatch.js",
+      "public"
+    ]
   }
 }

@@ -23,9 +23,9 @@ function* getFeaturedAuthor() {
     const response = yield call(fetchFeaturedAuthor);
     if (response.data.data) {
       yield put(featuredAuthorSuccess(response.data.data));
+    } else {
+      yield put(featuredAuthorFailure(response.data.message));
     }
-
-    yield put(featuredAuthorFailure(response.data.message));
   } catch (error) {
     yield put(featuredAuthorFailure(error.message));
   }

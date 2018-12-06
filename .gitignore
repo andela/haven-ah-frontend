@@ -39,5 +39,9 @@ dist/
 
 # vs code file
 .vscode
-dist
-.DS_Store
+
+# selenium report file
+reports
+
+# selenium error logs
+selenium-debug.log

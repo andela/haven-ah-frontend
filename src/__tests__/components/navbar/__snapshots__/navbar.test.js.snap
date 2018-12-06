@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar should contain header text 1`] = `
+<span
+  class="ah-orange"
+>
+  Haven
+</span>
+`;
+
+exports[`Navbar should match snapshot 1`] = `[Function]`;

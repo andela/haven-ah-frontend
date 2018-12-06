@@ -45,6 +45,7 @@ class NavBar extends Component {
               <img src="" width=" 112" height="28" />
             </Link>
             <div
+              data-testid="burger"
               className="navbar-burger burger"
               data-target="ahNavbar"
               ref="burger">

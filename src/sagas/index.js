@@ -3,8 +3,11 @@ import watchHeroArticle from './heroArticleSaga';
 import watchTrendingArticles from './trendingArticlesSaga';
 import watchGetFeaturedAuthor from './featuredAuthorSaga';
 import watchRecentArticles from './recentArticlesSaga';
+<<<<<<< HEAD
 import watchLoginSaga from './loginSaga';
 import watchRegisterSaga from './registerSaga';
+=======
+>>>>>>> ft(articles): Get single article
 import watchGetSingleArticle from './articleThreadSaga';
 
 /**
@@ -16,8 +19,11 @@ function* rootSaga() {
     watchTrendingArticles(),
     watchGetFeaturedAuthor(),
     watchRecentArticles(),
+<<<<<<< HEAD
     watchLoginSaga(),
     watchRegisterSaga(),
+=======
+>>>>>>> ft(articles): Get single article
     watchGetSingleArticle()
   ]);
 }

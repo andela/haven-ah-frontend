@@ -5,8 +5,12 @@ import rootSaga from '../../sagas';
 
 import {
   ARTICLE_THREAD_REQUEST,
+<<<<<<< HEAD
   ARTICLE_THREAD_SUCCESS,
   ARTICLE_THREAD_FAILURE
+=======
+  ARTICLE_THREAD_SUCCESS
+>>>>>>> ft(articles): Get single article
 } from '../../actionTypes/articleThreadActionTypes';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -20,6 +24,10 @@ describe('Single article Saga:', () => {
       data: {}
     }
   }));
+<<<<<<< HEAD
+=======
+
+>>>>>>> ft(articles): Get single article
   it('should execute saga workers', async (done) => {
     const store = mockStore({});
     sagaMiddleware.run(rootSaga);
@@ -37,6 +45,7 @@ describe('Single article Saga:', () => {
       done();
     });
   });
+<<<<<<< HEAD
 
 
   describe('Article Thread Saga:', () => {
@@ -67,4 +76,6 @@ describe('Single article Saga:', () => {
       });
     });
   });
+=======
+>>>>>>> ft(articles): Get single article
 });

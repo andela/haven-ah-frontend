@@ -21,8 +21,11 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/home" component={Home} />
+<<<<<<< HEAD
       <Route exact path="/login" component={Login} />
       <Route exact path="/confirm/" component={confirmEmail} />
+=======
+>>>>>>> ft(articles): Get single article
       <Route path="/articles" component={ArticlePage} />
       <Route exact path="/signup" component={signupOrRedirect} />
       <Route exact path="/login" component={loginOrRedirect} />

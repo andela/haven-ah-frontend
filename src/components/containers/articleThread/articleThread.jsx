@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+<<<<<<< HEAD
 import Preloader from './articlePreloader';
+=======
+>>>>>>> ft(articles): Get single article
 import './articleThread.scss';
 import { fetchArticle } from '../../../actions/articleThread';
 import timeFormatter from '../../../helpers/timeFormatter';
 
 class ArticleThread extends Component {
   componentDidMount() {
+<<<<<<< HEAD
     const {
       match: {
         params: {
@@ -15,6 +19,9 @@ class ArticleThread extends Component {
         }
       }
     } = this.props;
+=======
+    const { slug } = this.props.match.params;
+>>>>>>> ft(articles): Get single article
     this.props.fetchArticle(slug);
   }
 
@@ -22,7 +29,11 @@ class ArticleThread extends Component {
     const { article } = this.props;
     if (!article) {
       return (
+<<<<<<< HEAD
         <Preloader />
+=======
+        <p>Loading...</p>
+>>>>>>> ft(articles): Get single article
       );
     }
     const { images, readtime } = article;

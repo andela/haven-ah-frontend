@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
 import Preloader from './articlePreloader';
-=======
->>>>>>> ft(articles): Get single article
 import './articleThread.scss';
 import { fetchArticle } from '../../../actions/articleThread';
 import timeFormatter from '../../../helpers/timeFormatter';
+import FollowButton from '../followButton/followButton';
 
 class ArticleThread extends Component {
   componentDidMount() {
-<<<<<<< HEAD
     const {
       match: {
         params: {
@@ -19,9 +16,6 @@ class ArticleThread extends Component {
         }
       }
     } = this.props;
-=======
-    const { slug } = this.props.match.params;
->>>>>>> ft(articles): Get single article
     this.props.fetchArticle(slug);
   }
 
@@ -29,13 +23,13 @@ class ArticleThread extends Component {
     const { article } = this.props;
     if (!article) {
       return (
-<<<<<<< HEAD
         <Preloader />
-=======
-        <p>Loading...</p>
->>>>>>> ft(articles): Get single article
       );
     }
+
+    const currentUser = localStorage.getItem('username');
+    const isOwner = currentUser === article.Author.username;
+
     const { images, readtime } = article;
     const date = new Date(article.createdAt);
     return (
@@ -47,13 +41,14 @@ class ArticleThread extends Component {
               <div className="column">
                 <div className="article--image" style={{
                   backgroundImage:
-`url(${images ? images[0] : 'url(../../../public/images/sweet.jpeg)'})`
+                    `url(${images
+                      ? images[0] : 'url(../../../public/images/sweet.jpeg)'})`
                 }} />
                 <div className="article--title">
                   <h1 className="title is-1 has-text-centered">
                     {article.title}
                   </h1>
-                  <p className="subtitle">
+                  <p className="article--description">
                     {article.description}
                   </p>
                   <div className="article--details">
@@ -93,11 +88,7 @@ class ArticleThread extends Component {
                       </span>
                     </div>
                     <div className="article--author__details-follow">
-                      <button
-                        className="button is-normal article--button__follow"
-                      >
-                        Follow
-                      </button>
+                      { isOwner ? null : <FollowButton /> }
                     </div>
                   </div>
                 </div>
@@ -107,21 +98,19 @@ class ArticleThread extends Component {
                 <div className="article--reaction">
                   <div className="justify-content__start">
                     <div className="article--reaction__love">
-                      <i className="fa fa-heart" />
+                      <i className="fa fa-heart-o fa-2x" />
                       <span className="article--reaction__love-count">
-                            233
+                        {article.Reactions.loveCount}
                       </span>
                     </div>
                     <div className="article--reaction__like">
-                      <i className="fa fa-thumbs-up" />
+                      <i className="fa fa-thumbs-o-up fa-2x" />
                       <span className="article--reaction__like-count">
-                      245
+                        {article.Reactions.likesCount}
                       </span>
                     </div>
                     <div className="article--reaction__like">
-                      <span className="article--reaction__like-count">
-                        <i className="fa fa-bookmark fa-2x" />
-                      </span>
+                      <i className="fa fa-bookmark-o fa-2x" />
                     </div>
                   </div>
                 </div>
@@ -146,12 +135,13 @@ class ArticleThread extends Component {
 
 const mapStateToProps = state => ({
   article: state.articleThread.article,
+  following: state.following.payload,
 });
 
 ArticleThread.propTypes = {
   article: PropTypes.object,
   fetchArticle: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, { fetchArticle })(ArticleThread);

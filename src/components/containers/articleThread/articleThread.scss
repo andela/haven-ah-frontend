@@ -198,6 +198,15 @@ blockquote {
     margin: 15px 0px;
     line-height: 180%;
 }
+
+.article--description {
+    color: #666;
+    margin: 30px 0px 20px 0px;
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.25;
+}
+
 .article--tags__item:first-child {
     margin-left: 0px;
 }
@@ -218,11 +227,13 @@ blockquote {
 }
 .article--reaction {
     padding-top: 20px;
+    height: 45px;
 }
 .article--reaction__love > i {
     font-size: 20px;
     color: red;
     cursor: pointer;
+    margin-right: 15px;
 }
 .article--reaction__like{
     padding-left: 40px
@@ -231,6 +242,7 @@ blockquote {
     color: #777;
     font-size: 20px;
     cursor: pointer;
+    margin-right: 15px;
 }
 .article--reaction__like > i:hover {
     color: #ddd;
@@ -252,4 +264,10 @@ blockquote {
     border-color: #E47E08;
     color: #E47E08;
 >>>>>>> ft(articles): Get single article
+}
+
+.article--button__following {
+    background-color: #E47E08;
+    border-color: #fff;
+    color: #fff;
 }

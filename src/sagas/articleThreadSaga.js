@@ -9,7 +9,12 @@ import {
 } from '../actions/articleThread';
 
 const fetchArticle = (slug) => {
-  return axios.get(`${process.env.API_URL}/articles/${slug}`);
+  const token = localStorage.getItem('token');
+  return axios.get(`${process.env.API_URL}/articles/${slug}`, {
+    headers: {
+      'x-access-token': token,
+    }
+  });
 };
 
 /**

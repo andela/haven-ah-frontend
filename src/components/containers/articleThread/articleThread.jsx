@@ -6,6 +6,8 @@ import './articleThread.scss';
 import { fetchArticle } from '../../../actions/articleThread';
 import timeFormatter from '../../../helpers/timeFormatter';
 import FollowButton from '../followButton/followButton';
+import LikeButton from '../reactions/likeButton';
+import LoveButton from '../reactions/loveButton';
 
 class ArticleThread extends Component {
   componentDidMount() {
@@ -17,6 +19,17 @@ class ArticleThread extends Component {
       }
     } = this.props;
     this.props.fetchArticle(slug);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const checkReaction = nextProps.reaction === this.props.reaction;
+    if (!checkReaction) {
+      const { slug } = this.props.match.params;
+      this.props.fetchArticle(slug);
+
+      return true;
+    }
+    return true;
   }
 
   render() {
@@ -98,13 +111,13 @@ class ArticleThread extends Component {
                 <div className="article--reaction">
                   <div className="justify-content__start">
                     <div className="article--reaction__love">
-                      <i className="fa fa-heart-o fa-2x" />
+                      <LoveButton />
                       <span className="article--reaction__love-count">
                         {article.Reactions.loveCount}
                       </span>
                     </div>
                     <div className="article--reaction__like">
-                      <i className="fa fa-thumbs-o-up fa-2x" />
+                      <LikeButton />
                       <span className="article--reaction__like-count">
                         {article.Reactions.likesCount}
                       </span>
@@ -136,12 +149,18 @@ class ArticleThread extends Component {
 const mapStateToProps = state => ({
   article: state.articleThread.article,
   following: state.following.payload,
+  reaction: state.reaction.payload,
 });
 
 ArticleThread.propTypes = {
   article: PropTypes.object,
   fetchArticle: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  reaction: PropTypes.object,
+};
+
+LikeButton.defaultProps = {
+  reaction: {},
 };
 
 export default connect(mapStateToProps, { fetchArticle })(ArticleThread);

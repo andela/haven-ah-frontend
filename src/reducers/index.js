@@ -17,4 +17,5 @@ export default combineReducers({
   registerUser: registerReducer,
   articleThread: singleArticleReducer,
   following: followUserReducer,
+  reaction: reactionReducer,
 });

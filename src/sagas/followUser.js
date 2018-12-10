@@ -15,11 +15,13 @@ import {
 
 const token = localStorage.getItem('token');
 const followUser = (username) => {
-  return axios.post(`${process.env.API_URL}/profiles/${username}/follow`, {
-    headers: {
-      'x-access-token': token,
-    }
-  });
+  return axios.post(`${process.env.API_URL}/profiles/${username}/follow`,
+    {},
+    {
+      headers: {
+        'x-access-token': token,
+      }
+    });
 };
 
 const unFollowUser = (username) => {

@@ -2,6 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import './alert.scss';
 
+
 const AlertBox = ({ theme, message }) => {
   return (
     <div className={`alert alert-${theme}`}>

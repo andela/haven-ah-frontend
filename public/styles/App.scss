@@ -213,3 +213,44 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: center;
 }
+
+/* auth */
+.form__card {
+   margin-top: 100px;
+}
+
+.login-banner_img {
+    margin-top: 10px;
+   min-height: 600px !important;
+   width: 100%;
+   background-image: url('../images/login.png');
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+
+.facebook-btn {
+    background: $facebook-blue;
+    color: $white-color;
+}
+
+.facebook-btn:hover {
+  color: $white-grey;
+}
+   
+.line {
+   width: 80%;
+   margin-top: 1rem;
+   margin-bottom: 1rem;
+   margin-left: auto;
+   margin-right: auto;
+   border: 1px solid $white-grey;
+}
+
+.banner_img {
+    margin-top: 100px;
+    min-height: 650px !important;
+    width: 100%;
+    background-image: url('../images/signup.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

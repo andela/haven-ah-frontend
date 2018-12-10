@@ -6,10 +6,23 @@ import store from '../../../store';
 
 afterEach(cleanup);
 
-describe('Hero Section  component', () => {
+describe('Trending Section  component', () => {
+  const articles = [
+    {
+      id: 1,
+      title: 'MY test article',
+      description: 'My test description'
+    },
+    {
+      id: 2,
+      title: 'A test article',
+      description: 'A test description'
+    },
+  ];
+
   it('should render without crashing', () => {
     render(<Router>
-      <TrendingSection store={store} />
+      <TrendingSection store={store} articles={articles}/>
     </Router>);
   });
 });

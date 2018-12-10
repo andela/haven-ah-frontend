@@ -4,6 +4,7 @@ import watchTrendingArticles from './trendingArticlesSaga';
 import watchGetFeaturedAuthor from './featuredAuthorSaga';
 import watchRecentArticles from './recentArticlesSaga';
 import watchLoginSaga from './loginSaga';
+import watchRegisterSaga from './registerSaga';
 
 /**
  * The root saga
@@ -15,6 +16,7 @@ function* rootSaga() {
     watchGetFeaturedAuthor(),
     watchRecentArticles(),
     watchLoginSaga(),
+    watchRegisterSaga(),
   ]);
 }
 

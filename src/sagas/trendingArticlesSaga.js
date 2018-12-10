@@ -9,7 +9,7 @@ import {
 
 const fetchTrendingArticles = () => {
   return axios.get(
-    `${process.env.API_URL}/articles`
+    `${process.env.API_URL}/articles/trending`
   );
 };
 
@@ -20,13 +20,9 @@ const fetchTrendingArticles = () => {
 export function* trendingArticlesSaga() {
   try {
     const response = yield call(fetchTrendingArticles);
-    if (response.data.status !== 200) {
-      yield put(trendingArticlesFailureAction(response.data.data.message));
-    } else {
-      yield put(trendingArticlesSuccessAction(response.data.data.rows));
-    }
+    yield put(trendingArticlesSuccessAction(response.data.data));
   } catch (error) {
-    yield put(trendingArticlesFailureAction(error.message));
+    yield put(trendingArticlesFailureAction(error.response.data.message));
   }
 }
 

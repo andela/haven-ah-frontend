@@ -23,7 +23,7 @@ class TrendingSection extends PureComponent {
             </div>
           </div>
           <div className="columns is-variable is-8 mt-3">
-            {articles.length !== 0
+            {articles && articles.length !== 0
                 && articles.slice(0, 3).map(article => (
                   <TrendingCard key={article.id}
                     title={article.title}
@@ -36,7 +36,7 @@ class TrendingSection extends PureComponent {
 
           </div>
           <div className="columns is-variable is-8 mt-6">
-            {articles.length !== 0
+            {articles && articles.length !== 0
               && articles.slice(3, 6).map(article => (
                 <TrendingCard key={article.id}
                   title={article.title}

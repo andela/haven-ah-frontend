@@ -4,14 +4,14 @@ import mockAxios from '../../../__mocks__/axios';
 import rootSaga from '../../sagas';
 
 import {
-  TRENDING_ARTICLES_REQUEST,
-  TRENDING_ARTICLES_SUCCESS,
-} from '../../actionTypes/trendingActionType';
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS
+} from '../../actionTypes/registerActionType';
 
 const sagaMiddleware = createSagaMiddleware();
 const mockStore = configureStore([sagaMiddleware]);
 
-describe('Trending Articles Saga:', () => {
+describe('Register user Saga:', () => {
   mockAxios.get.mockImplementationOnce(() => Promise.resolve({
     data: {
       status: 200,
@@ -25,16 +25,16 @@ describe('Trending Articles Saga:', () => {
     sagaMiddleware.run(rootSaga);
 
     const expectedActions = [
-      { type: TRENDING_ARTICLES_REQUEST },
-      { type: TRENDING_ARTICLES_SUCCESS, articles: {} }
+      { type: REGISTER_REQUEST },
+      { type: REGISTER_SUCCESS, payload: {} }
     ];
 
-    store.dispatch({ type: TRENDING_ARTICLES_REQUEST });
+    store.dispatch({ type: REGISTER_REQUEST });
 
     store.subscribe(() => {
       const actions = store.getActions();
       expect(actions).toEqual(expectedActions);
-      done();
     });
+    done();
   });
 });

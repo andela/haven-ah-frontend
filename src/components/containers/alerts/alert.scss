@@ -1,0 +1,37 @@
+@import './../../../../public/styles/colors.scss';
+
+.alert {
+  border-bottom-left-radius: 500px;
+  border-bottom-right-radius: 500px;
+
+  padding: 10px 20px;
+  text-align: center;
+  color: white;
+  transition: all 0.25s ease-in-out;
+  min-width: 300px;
+  animation: fadeIn 3s;
+  opacity: 1;
+  position: fixed;
+  top: 50px;
+  right: 250px;
+  z-index: 1000;
+}
+
+.alert-danger {
+  background-color: $light-red
+}
+
+.alert-success {
+  background-color: $light-green;
+}
+
+@keyframes fadeIn {
+  from {
+    right: 0;
+    opacity: 0;
+  }
+  to {
+    right: 250px;
+    opacity: 1;
+  }
+}

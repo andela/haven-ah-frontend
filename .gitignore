@@ -41,7 +41,7 @@ dist/
 .vscode
 
 # selenium report file
-reports
+reports/
 
 # selenium error logs
 selenium-debug.log

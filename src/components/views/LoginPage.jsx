@@ -5,7 +5,6 @@ import { PropTypes } from 'prop-types';
 import { loginRequestAction } from '../../actions/loginActions';
 import validateSignIn from '../../utilities/validateInput';
 import AlertBox from '../containers/alerts/AlertBox';
-import '../../../public/styles/auth.scss';
 
 class Login extends Component {
   state = {

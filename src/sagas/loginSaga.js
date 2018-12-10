@@ -6,7 +6,7 @@ import {
 } from '../actions/loginActions';
 
 import { LOGIN_REQUEST } from '../actionTypes/loginActionType';
-import setToken, { setUsername } from '../utilities/auth';
+import { setToken, setUsername } from '../utilities/auth';
 
 /**
  * Handles the call to the login API endpoint

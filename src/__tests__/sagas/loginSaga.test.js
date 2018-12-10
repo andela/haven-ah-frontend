@@ -14,8 +14,9 @@ describe('Login saga', () => {
   mockAxios.post.mockImplementationOnce(() => Promise.resolve({
     data: {
       status: 200,
+      message: 'Hello Xtreme, Welcome to the Haven',
       data: {
-        token: ''
+        token: 'sabdjhsjdjfd.kfbksjdfahjksd'
       }
     }
   }));
@@ -26,7 +27,7 @@ describe('Login saga', () => {
 
     const expectedActions = [
       { type: LOGIN_REQUEST, payload: {} },
-      { type: LOGIN_SUCCESS, payload: '' },
+      { type: LOGIN_SUCCESS, payload: 'sabdjhsjdjfd.kfbksjdfahjksd' },
     ];
 
     store.dispatch({ type: LOGIN_REQUEST, payload: {} });

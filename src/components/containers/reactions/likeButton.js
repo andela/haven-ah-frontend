@@ -20,9 +20,11 @@ class LikeButton extends Component {
     return (
       hasLiked
         ? <i
+          data-testid="like"
           className="fa fa-thumbs-up fa-2x"
           onClick={this.handleLike} />
         : <i
+          data-testid="like"
           className="fa fa-thumbs-o-up fa-2x"
           onClick={this.handleLike} />
     );

@@ -12,7 +12,7 @@ const sagaMiddleware = createSagaMiddleware();
 const mockStore = configureStore([sagaMiddleware]);
 
 describe('Register user Saga:', () => {
-  mockAxios.get.mockImplementationOnce(() => Promise.resolve({
+  mockAxios.post.mockImplementationOnce(() => Promise.resolve({
     data: {
       status: 200,
       message: 'success',
@@ -26,7 +26,7 @@ describe('Register user Saga:', () => {
 
     const expectedActions = [
       { type: REGISTER_REQUEST },
-      { type: REGISTER_SUCCESS, payload: {} }
+      { type: REGISTER_SUCCESS, payload: 'success' }
     ];
 
     store.dispatch({ type: REGISTER_REQUEST });

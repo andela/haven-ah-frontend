@@ -44,11 +44,11 @@ const love = (slug) => {
  */
 export function* likeSaga(action) {
   try {
-    const response = yield call(like, action.slug);
-    if (response.data.status !== 200) {
-      yield put(likeFailure(response.data.data.message));
+    const { data } = yield call(like, action.slug);
+    if (data.status !== 201 && data.status !== 200) {
+      yield put(likeFailure(data.message));
     } else {
-      yield put(likeSuccess(response.data));
+      yield put(likeSuccess(data));
     }
   } catch (error) {
     yield put(likeFailure(error.message));
@@ -61,11 +61,11 @@ export function* likeSaga(action) {
  */
 export function* loveSaga(action) {
   try {
-    const response = yield call(love, action.slug);
-    if (response.data.status !== 200) {
-      yield put(loveFailure(response.data.data.message));
+    const { data } = yield call(love, action.slug);
+    if (data.status !== 201 && data.status !== 200) {
+      yield put(loveFailure(data.message));
     } else {
-      yield put(loveSuccess(response.data));
+      yield put(loveSuccess(data));
     }
   } catch (error) {
     yield put(loveFailure(error.message));

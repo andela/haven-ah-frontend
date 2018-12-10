@@ -10,11 +10,15 @@ import {
 
 const fetchArticle = (slug) => {
   const token = localStorage.getItem('token');
-  return axios.get(`${process.env.API_URL}/articles/${slug}`, {
-    headers: {
-      'x-access-token': token,
-    }
-  });
+  let headers = {};
+  if (token) {
+    headers = {
+      headers: {
+        'x-access-token': token
+      }
+    };
+  }
+  return axios.get(`${process.env.API_URL}/articles/${slug}`, headers);
 };
 
 /**

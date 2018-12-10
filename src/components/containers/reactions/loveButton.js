@@ -20,9 +20,11 @@ class LoveButton extends Component {
     return (
       hasLoved
         ? <i
+          data-testid="love"
           className="fa fa-heart fa-2x"
           onClick={this.handleLove} />
         : <i
+          data-testid="love"
           className="fa fa-heart-o fa-2x"
           onClick={this.handleLove} />
     );

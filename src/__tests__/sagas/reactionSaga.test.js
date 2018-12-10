@@ -4,58 +4,25 @@ import mockAxios from '../../../__mocks__/axios';
 import rootSaga from '../../sagas';
 
 import {
-  FOLLOW_USER_REQUEST,
-  FOLLOW_USER_SUCCESS,
-  UNFOLLOW_USER_REQUEST,
-  UNFOLLOW_USER_SUCCESS,
-  FOLLOW_USER_FAILURE,
-  UNFOLLOW_USER_FAILURE,
-} from '../../actionTypes/followUserActionTypes';
+  LIKE_REQUEST,
+  LIKE_SUCCESS,
+  LIKE_FAILURE,
+  LOVE_REQUEST,
+  LOVE_SUCCESS,
+  LOVE_FAILURE,
+} from '../../actionTypes/reactionActionTypes';
 
 const sagaMiddleware = createSagaMiddleware();
 const mockStore = configureStore([sagaMiddleware]);
 
-describe('Follow user saga:', () => {
+describe('Like saga:', () => {
   mockAxios.post.mockImplementationOnce(() => Promise.resolve({
-    data: {
-      status: 201,
-      message: 'success',
-      data: {}
-    }
-  }));
-
-  it('should execute saga workers', async (done) => {
-    const store = mockStore({});
-    sagaMiddleware.run(rootSaga);
-
-    const expectedActions = [
-      { type: FOLLOW_USER_REQUEST },
-      {
-        type: FOLLOW_USER_SUCCESS,
-        payload: {
-          status: 201,
-          message: 'success',
-          data: {}
-        }
-      }
-    ];
-
-    store.dispatch({ type: FOLLOW_USER_REQUEST });
-
-    store.subscribe(() => {
-      const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
-      done();
-    });
-  });
-});
-
-describe('Unfollow user saga:', () => {
-  mockAxios.delete.mockImplementationOnce(() => Promise.resolve({
     data: {
       status: 200,
       message: 'success',
-      data: {}
+      data: {
+        reactionType: 'Like'
+      }
     }
   }));
 
@@ -64,18 +31,20 @@ describe('Unfollow user saga:', () => {
     sagaMiddleware.run(rootSaga);
 
     const expectedActions = [
-      { type: UNFOLLOW_USER_REQUEST },
+      { type: LIKE_REQUEST },
       {
-        type: UNFOLLOW_USER_SUCCESS,
+        type: LIKE_SUCCESS,
         payload: {
           status: 200,
           message: 'success',
-          data: {}
+          data: {
+            reactionType: 'Like'
+          }
         }
       }
     ];
 
-    store.dispatch({ type: UNFOLLOW_USER_REQUEST });
+    store.dispatch({ type: LIKE_REQUEST });
 
     store.subscribe(() => {
       const actions = store.getActions();
@@ -85,7 +54,46 @@ describe('Unfollow user saga:', () => {
   });
 });
 
-describe('Follow user saga:', () => {
+describe('Love article saga:', () => {
+  mockAxios.post.mockImplementationOnce(() => Promise.resolve({
+    data: {
+      status: 200,
+      message: 'success',
+      data: {
+        reactionType: 'Love'
+      },
+    }
+  }));
+
+  it('should execute saga workers', async (done) => {
+    const store = mockStore({});
+    sagaMiddleware.run(rootSaga);
+
+    const expectedActions = [
+      { type: LOVE_REQUEST },
+      {
+        type: LOVE_SUCCESS,
+        payload: {
+          status: 200,
+          message: 'success',
+          data: {
+            reactionType: 'Love'
+          },
+        }
+      }
+    ];
+
+    store.dispatch({ type: LOVE_REQUEST });
+
+    store.subscribe(() => {
+      const actions = store.getActions();
+      expect(actions).toEqual(expectedActions);
+      done();
+    });
+  });
+});
+
+describe('Like saga failure:', () => {
   mockAxios.post.mockImplementationOnce(() => Promise.resolve({
   }));
 
@@ -94,14 +102,14 @@ describe('Follow user saga:', () => {
     sagaMiddleware.run(rootSaga);
 
     const expectedActions = [
-      { type: FOLLOW_USER_REQUEST },
+      { type: LIKE_REQUEST },
       {
-        type: FOLLOW_USER_FAILURE,
+        type: LIKE_FAILURE,
         error: 'Cannot read property \'status\' of undefined',
       }
     ];
 
-    store.dispatch({ type: FOLLOW_USER_REQUEST });
+    store.dispatch({ type: LIKE_REQUEST });
 
     store.subscribe(() => {
       const actions = store.getActions();
@@ -111,9 +119,8 @@ describe('Follow user saga:', () => {
   });
 });
 
-describe('Unfollow user saga:', () => {
-  mockAxios.delete.mockImplementationOnce(() => Promise.resolve({
-
+describe('Love article saga failure:', () => {
+  mockAxios.post.mockImplementationOnce(() => Promise.resolve({
   }));
 
   it('should execute saga workers', async (done) => {
@@ -121,14 +128,14 @@ describe('Unfollow user saga:', () => {
     sagaMiddleware.run(rootSaga);
 
     const expectedActions = [
-      { type: UNFOLLOW_USER_REQUEST },
+      { type: LOVE_REQUEST },
       {
-        type: UNFOLLOW_USER_FAILURE,
+        type: LOVE_FAILURE,
         error: 'Cannot read property \'status\' of undefined',
       }
     ];
 
-    store.dispatch({ type: UNFOLLOW_USER_REQUEST });
+    store.dispatch({ type: LOVE_REQUEST });
 
     store.subscribe(() => {
       const actions = store.getActions();

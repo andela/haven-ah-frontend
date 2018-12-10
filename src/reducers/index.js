@@ -7,6 +7,7 @@ import loginReducer from './loginReducer';
 import registerReducer from './registerReducer';
 import singleArticleReducer from './articleThread';
 import followUserReducer from './followUser';
+import reactionReducer from './reactionReducer';
 
 export default combineReducers({
   heroArticle: heroArticleReducer,

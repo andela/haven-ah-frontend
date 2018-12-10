@@ -7,26 +7,6 @@ import {
 } from '../../../actions/followUser';
 
 class FollowButton extends Component {
-  constructor(props) {
-    super(props);
-
-    const { hasFollowedAuthor } = this.props.article.Reactions;
-    this.state = {
-      hasFollowedAuthor,
-    };
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const check = nextProps.following === this.props.following;
-    if (!check) {
-      this.setState({
-        hasFollowedAuthor: !this.state.hasFollowedAuthor,
-      });
-      return true;
-    }
-    return true;
-  }
-
   handleFollow = () => {
     const { username } = this.props.article.Author;
     this.props.followUserAction(username);
@@ -38,10 +18,11 @@ class FollowButton extends Component {
   }
 
   render() {
-    const { hasFollowedAuthor } = this.state;
+    const { hasFollowedAuthor } = this.props.article.Reactions;
     return (
       hasFollowedAuthor
         ? <button
+          data-testid="follow"
           className= {`
             button is-small
             article--button__following`}
@@ -49,6 +30,7 @@ class FollowButton extends Component {
             Following
         </button>
         : <button
+          data-testid="follow"
           className= {`
             button is-small
             article--button__follow`}
@@ -71,6 +53,11 @@ FollowButton.propTypes = {
   unFollowUserAction: PropTypes.func.isRequired,
   following: PropTypes.object,
   status: PropTypes.number,
+};
+
+FollowButton.defaultProps = {
+  following: {},
+  status: 100,
 };
 
 export default connect(

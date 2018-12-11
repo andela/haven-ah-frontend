@@ -20,7 +20,7 @@ describe('Register user Saga:', () => {
     }
   }));
 
-  it('should execute saga workers', async (done) => {
+  it('should execute saga workers', (done) => {
     const store = mockStore({});
     sagaMiddleware.run(rootSaga);
 
@@ -34,7 +34,7 @@ describe('Register user Saga:', () => {
     store.subscribe(() => {
       const actions = store.getActions();
       expect(actions).toEqual(expectedActions);
+      done();
     });
-    done();
   });
 });

@@ -8,14 +8,20 @@ import {
   WhatsappIcon, WhatsappShareButton,
   EmailIcon, EmailShareButton,
 } from 'react-share';
-import Preloader from './articlePreloader';
-import './articleThread.scss';
-import { fetchArticle, clearRedirect } from '../../../actions/articleThread';
-import timeFormatter from '../../../helpers/timeFormatter';
 import FollowButton from '../followButton/followButton';
 import LikeButton from '../reactions/likeButton';
 import LoveButton from '../reactions/loveButton';
 import AlertBox from '../alerts/AlertBox';
+import CommentSection from '../comments/CommentSection';
+import Preloader from './articlePreloader';
+import timeFormatter from '../../../helpers/timeFormatter';
+import './articleThread.scss';
+import {
+  fetchArticle,
+  clearRedirect,
+  getComments,
+  postComment,
+} from '../../../actions/articleThread';
 
 class ArticleThread extends Component {
   componentDidMount() {
@@ -44,7 +50,12 @@ class ArticleThread extends Component {
   }
 
   render() {
-    const { article } = this.props;
+    const {
+      fetchingComments,
+      article, newComment, comments, match: { params: { slug, } },
+      getCommentsAction, postCommentAction
+    } = this.props;
+
     if (!article) {
       return (
         <Preloader />
@@ -195,16 +206,17 @@ class ArticleThread extends Component {
               </div>
               <div className="column is-2" />
             </div>
-            <div className="columns comments">
-              <div className="column is-2" />
-              <div className="column">
-                <button className="button is-light is-medium is-fullwidth">
-                  Load Comments...
-                </button>
-              </div>
-              <div className="column is-2" />
-            </div>
           </div>
+        </section>
+        <section>
+          <CommentSection
+            fetching={fetchingComments}
+            comments={comments}
+            postComment={postCommentAction}
+            getComments={getCommentsAction}
+            slug={slug}
+            newComment={newComment}
+          />
         </section>
       </div>
     );
@@ -215,6 +227,9 @@ const mapStateToProps = state => ({
   article: state.articleThread.article,
   following: state.following,
   reaction: state.reaction,
+  comments: state.articleThread.comments,
+  newComment: state.articleThread.newComment,
+  fetchingComments: state.articleThread.fetchingComments
 });
 
 ArticleThread.propTypes = {
@@ -224,6 +239,20 @@ ArticleThread.propTypes = {
   clearRedirect: PropTypes.func.isRequired,
   reaction: PropTypes.object,
   following: PropTypes.object,
+  getCommentsAction: PropTypes.func,
+  postCommentAction: PropTypes.func,
+  comments: PropTypes.array,
+  newComment: PropTypes.object,
+  fetchingComments: PropTypes.bool
+};
+
+ArticleThread.defaultProps = {
+  article: null,
+  getCommentsAction: () => { },
+  postCommentAction: () => { },
+  comments: [],
+  newComment: {},
+  fetchingComments: false,
 };
 
 LikeButton.defaultProps = {
@@ -231,7 +260,11 @@ LikeButton.defaultProps = {
   following: {},
 };
 
-export default connect(mapStateToProps, {
+const actions = {
   fetchArticle,
-  clearRedirect
-})(ArticleThread);
+  clearRedirect,
+  getCommentsAction: getComments,
+  postCommentAction: postComment,
+};
+
+export default connect(mapStateToProps, actions)(ArticleThread);

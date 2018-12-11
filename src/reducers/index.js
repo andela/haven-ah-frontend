@@ -10,6 +10,7 @@ import followUserReducer from './followUser';
 import reactionReducer from './reactionReducer';
 import createArticleReducer from './createArticle';
 
+
 export default combineReducers({
   heroArticle: heroArticleReducer,
   trendingArticles: trendingArticlesReducer,

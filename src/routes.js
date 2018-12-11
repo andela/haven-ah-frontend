@@ -5,7 +5,6 @@ import Register from './components/views/RegisterPage';
 import confirmEmail from './components/containers/confirmEmail';
 import ArticlePage from './components/views/ArticlePage';
 import CreateArticle from './components/views/CreateArticlePage';
-
 import checkAuth from './utilities/authHandler';
 import Login from './components/views/LoginPage';
 

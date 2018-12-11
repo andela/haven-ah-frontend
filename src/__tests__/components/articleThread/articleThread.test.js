@@ -2,9 +2,9 @@ import React from 'react';
 import { cleanup } from 'react-testing-library';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import { BrowserRouter as Router } from 'react-router-dom';
+import store from '../../testUtilities/store';
 import ArticleThread
   from '../../../components/containers/articleThread/articleThread';
-import store from '../../testUtilities/store';
 import {
   initialArticleThread,
   articleThread,

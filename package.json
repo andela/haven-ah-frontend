@@ -80,7 +80,9 @@
     },
     "testPathIgnorePatterns": [
       "./*/nightwatch.js",
-      "public"
+      "public",
+      "./*/store.js",
+      "./*/mockData.js"
     ]
   }
 }

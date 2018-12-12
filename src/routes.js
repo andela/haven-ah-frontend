@@ -8,6 +8,7 @@ import CreateArticle from './components/views/CreateArticlePage';
 
 import checkAuth from './utilities/authHandler';
 import Login from './components/views/LoginPage';
+import Logout from './components/containers/logout/logout';
 
 const signupOrRedirect = () => {
   return checkAuth(<Register />);
@@ -27,6 +28,7 @@ const Routes = () => (
       <Route exact path="/signup" component={signupOrRedirect} />
       <Route exact path="/login" component={loginOrRedirect} />
       <Route exact path="/new-article" component={CreateArticle} />
+      <Route exact path="/logout" component={Logout} />
       <Redirect to="/" />
     </Switch>
   </div>

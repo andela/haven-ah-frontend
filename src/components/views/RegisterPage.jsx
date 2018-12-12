@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { registerRequestAction } from '../../actions/registerAction';
 import AlertBox from '../containers/alerts/AlertBox';
-
+import SocialAuth from '../containers/auth/SocialAuth';
 
 class RegisterPage extends Component {
     state = {
@@ -67,22 +67,7 @@ class RegisterPage extends Component {
                     <p className="has-text-centered">
                   Lets set you up so you could start writing awesome articles
                     </p>
-                    <div className="mt-1">
-                      <a className="button is-medium is-fullwidth is-outlined">
-                        <span className="icon is-medium has-text-danger">
-                          <i className="fa fa-google" />
-                        </span>
-                        <span>Sign up with Google</span>
-                      </a>
-                    </div>
-                    <div className="mt-1 mb-1">
-                      <a className="button is-medium is-fullwidth facebook">
-                        <span className="icon is-medium">
-                          <i className="fa fa-facebook" />
-                        </span>
-                        <span>Sign up with Facebook</span>
-                      </a>
-                    </div>
+                    <SocialAuth authType={'Sign up'} />
                     <div className="line" />
                     <form className="form" onSubmit={this.handleSubmit}>
                       <div className="field">

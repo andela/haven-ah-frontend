@@ -1,16 +1,17 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import { BrowserRouter as Router } from 'react-router-dom';
-import HeroSection from
-  '../../../components/containers/hero-section/HeroSection';
-import store from '../../../store';
+import SocialAuth from
+  '../../../components/containers/auth/SocialAuth';
 
 afterEach(cleanup);
 
-describe('Hero Section  component', () => {
+describe('Social Authentication  component', () => {
   it('should render without crashing', () => {
     render(<Router>
-      <HeroSection store={store} />
+      <SocialAuth authType="Sign up">
+        <p>This is a Sign up page</p>
+      </SocialAuth>
     </Router>);
   });
 });

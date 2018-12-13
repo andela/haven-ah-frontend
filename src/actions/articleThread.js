@@ -1,7 +1,8 @@
 import {
   ARTICLE_THREAD_REQUEST,
   ARTICLE_THREAD_SUCCESS,
-  ARTICLE_THREAD_FAILURE
+  ARTICLE_THREAD_FAILURE,
+  CLEAR_REDIRECT
 } from '../actionTypes/articleThreadActionTypes';
 
 export const fetchArticle = slug => ({
@@ -17,4 +18,8 @@ export const fetchArticleSuccess = data => ({
 export const fetchArticleFailure = error => ({
   type: ARTICLE_THREAD_FAILURE,
   payload: error,
+});
+
+export const clearRedirect = () => ({
+  type: CLEAR_REDIRECT
 });

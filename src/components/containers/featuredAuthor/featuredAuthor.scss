@@ -55,6 +55,11 @@ $dark: #333;
         padding: 30px;
         line-height: 160%;
     }
+
+    & .button__link {
+        text-decoration: none;
+        color: #fff;
+    }
 }
 
 .start-writing:hover {

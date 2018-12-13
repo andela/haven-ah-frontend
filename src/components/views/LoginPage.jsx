@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { loginRequestAction } from '../../actions/loginActions';
 import validateSignIn from '../../utilities/validateInput';
+import { getToken } from '../../utilities/auth';
 import AlertBox from '../containers/alerts/AlertBox';
 import SocialAuth from '../containers/auth/SocialAuth';
 
@@ -48,6 +49,10 @@ class Login extends Component {
   render() {
     const { email, password, errors } = this.state;
     const { loggingIn, error, token } = this.props;
+
+    if (getToken()) {
+      return (<Redirect to="/" />);
+    }
 
     return (
       <div className="layout">

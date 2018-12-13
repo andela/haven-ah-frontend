@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { render, cleanup } from 'react-testing-library';
 import FeaturedAuthorComponent from
   '../../../components/containers/featuredAuthor/FeaturedAuthor';
@@ -15,6 +16,10 @@ let followers;
 const data = { featuredAuthor, followers };
 describe('Featured Author component', () => {
   it('should render without crashing', () => {
-    render(<FeaturedAuthorComponent data={data} store={store} />);
+    render(
+      <Router>
+        <FeaturedAuthorComponent data={data} store={store} />
+      </Router>
+    );
   });
 });

@@ -3,13 +3,14 @@ import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Navbar from '../containers/navbar/navbar';
 import ArticleThread from '../containers/articleThread/articleThread';
+import { isLoggedIn } from '../../utilities/auth';
 
 const ArticlePage = ({ match }) => {
   return (
     <div className="layout">
       <div className="container">
         <header>
-          <Navbar isLoggedIn />
+          <Navbar isLoggedIn={isLoggedIn()} />
         </header>
       </div>
 

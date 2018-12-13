@@ -117,7 +117,9 @@ class FeaturedAuthor extends PureComponent {
                 </h1>
                 <div className="display-center">
                   <button className="button is-orange is-rounded">
-                    Start Writing
+                    <Link className="button__link" to="/new-article">
+                      Start Writing
+                    </Link>
                   </button>
                 </div>
               </div>

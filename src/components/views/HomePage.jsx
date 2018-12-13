@@ -5,6 +5,7 @@ import RecentArticles from '../containers/recentArticles/RecentArticles';
 import FeaturedAuthor from '../containers/featuredAuthor/FeaturedAuthor';
 import TrendingSection from '../trendingsection/TrendingSection';
 import getAndSetUrlToken from '../../utilities/urlTokenHandler';
+import { isLoggedIn } from '../../utilities/auth';
 
 class HomePage extends PureComponent {
   componentDidMount() {
@@ -13,18 +14,10 @@ class HomePage extends PureComponent {
   }
 
   render() {
-    let isLoggedIn;
-    const token = localStorage.getItem('token');
-    if (token) {
-      isLoggedIn = true;
-    } else {
-      isLoggedIn = false;
-    }
-
     return (
       <div className="layout">
         <header className="banner">
-          <Navbar navStyle="transparent" isLoggedIn={isLoggedIn} />
+          <Navbar navStyle="transparent" isLoggedIn={isLoggedIn()} />
           <HeroSection />
         </header>
         <TrendingSection />

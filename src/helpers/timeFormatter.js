@@ -4,7 +4,7 @@
  * @returns readtime
  */
 const timeFormatter = (readtime) => {
-  const minutes = Math.floor(readtime / 60);
+  const minutes = Math.ceil(readtime / 60);
   return `${minutes} mins read`;
 };
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 import {
   FacebookIcon, FacebookShareButton,
@@ -9,7 +10,7 @@ import {
 } from 'react-share';
 import Preloader from './articlePreloader';
 import './articleThread.scss';
-import { fetchArticle } from '../../../actions/articleThread';
+import { fetchArticle, clearRedirect } from '../../../actions/articleThread';
 import timeFormatter from '../../../helpers/timeFormatter';
 import FollowButton from '../followButton/followButton';
 import LikeButton from '../reactions/likeButton';
@@ -25,6 +26,7 @@ class ArticleThread extends Component {
         }
       }
     } = this.props;
+    this.props.clearRedirect();
     this.props.fetchArticle(slug);
   }
 
@@ -127,7 +129,7 @@ class ArticleThread extends Component {
                   </div>
                 </div>
                 <div className="article--paragraph">
-                  <p>{article.body} </p>
+                  <p>{ReactHtmlParser(article.body)} </p>
                 </div>
                 {
                   reaction.error
@@ -219,6 +221,7 @@ ArticleThread.propTypes = {
   article: PropTypes.object,
   fetchArticle: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  clearRedirect: PropTypes.func.isRequired,
   reaction: PropTypes.object,
   following: PropTypes.object,
 };
@@ -228,4 +231,7 @@ LikeButton.defaultProps = {
   following: {},
 };
 
-export default connect(mapStateToProps, { fetchArticle })(ArticleThread);
+export default connect(mapStateToProps, {
+  fetchArticle,
+  clearRedirect
+})(ArticleThread);

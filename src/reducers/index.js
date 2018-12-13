@@ -6,7 +6,8 @@ import recentArticlesReducer from './recentArticlesReducer';
 import loginReducer from './loginReducer';
 import registerReducer from './registerReducer';
 import singleArticleReducer from './articleThread';
-
+import followUserReducer from './followUser';
+import reactionReducer from './reactionReducer';
 
 export default combineReducers({
   heroArticle: heroArticleReducer,
@@ -15,5 +16,7 @@ export default combineReducers({
   recentArticles: recentArticlesReducer,
   loginUser: loginReducer,
   registerUser: registerReducer,
-  articleThread: singleArticleReducer
+  articleThread: singleArticleReducer,
+  following: followUserReducer,
+  reaction: reactionReducer,
 });

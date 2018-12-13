@@ -97,6 +97,7 @@ blockquote {
 	>i {
 		font-size: 20px;
 		color: $color_2;
+		margin-right: 20px;
 		cursor: pointer;
 	}
 }
@@ -105,6 +106,7 @@ blockquote {
 	>i {
 		color: $color_3;
 		font-size: 20px;
+		margin-right: 20px;
 		cursor: pointer;
 		&:hover {
 			color: $color_4;
@@ -138,4 +140,22 @@ blockquote {
 		background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
 		animation: loading 1.5s infinite;
 	}
+}
+
+.article--button__following {
+    background-color: #E47E08;
+    border-color: #fff;
+    color: #fff;
+}
+
+.article__share-button {
+	display: inline-block;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.article__share-button
+	> button {
+	display: inline-block;
+	background-color: #777;
 }

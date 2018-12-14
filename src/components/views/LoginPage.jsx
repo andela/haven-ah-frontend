@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { loginRequestAction } from '../../actions/loginActions';
 import validateSignIn from '../../utilities/validateInput';
 import AlertBox from '../containers/alerts/AlertBox';
 import SocialAuth from '../containers/auth/SocialAuth';
+
+import '../../../public/styles/App.scss';
 
 class Login extends Component {
   state = {

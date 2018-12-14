@@ -7,9 +7,10 @@ import {
   LOVE_FAILURE,
 } from '../actionTypes/reactionActionTypes';
 
-export const likeAction = slug => ({
+export const likeAction = (slug, commentId) => ({
   type: LIKE_REQUEST,
   slug,
+  commentId,
 });
 
 export const likeSuccess = payload => ({
@@ -22,9 +23,10 @@ export const likeFailure = error => ({
   error,
 });
 
-export const loveAction = slug => ({
+export const loveAction = (slug, commentId) => ({
   type: LOVE_REQUEST,
   slug,
+  commentId,
 });
 
 export const loveSuccess = payload => ({

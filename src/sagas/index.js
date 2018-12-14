@@ -8,6 +8,8 @@ import watchRegisterSaga from './registerSaga';
 import watchGetSingleArticle from './articleThreadSaga';
 import { watchFollowUser, watchUnFollowUser } from './followUser';
 import { watchLike, watchLove } from './reactionSaga';
+import watchGetComments from './getCommentsSaga';
+import watchPostComment from './postCommentSaga';
 
 /**
  * The root saga
@@ -25,6 +27,8 @@ function* rootSaga() {
     watchUnFollowUser(),
     watchLike(),
     watchLove(),
+    watchGetComments(),
+    watchPostComment(),
   ]);
 }
 

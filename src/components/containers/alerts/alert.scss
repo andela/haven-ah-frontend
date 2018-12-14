@@ -15,13 +15,9 @@ $light-green: rgb(181, 228, 181);
   animation: fadeIn 3s;
   opacity: 1;
   position: fixed;
-  top: 50px;
-  right: 250px;
+  top: 60px;
+  right: 200px;
   animation: fadeIn 2s;
-  opacity: 1;
-  position: fixed;
-  top: 50px;
-  right: 100px;
   z-index: 1000;
 }
 
@@ -39,7 +35,7 @@ $light-green: rgb(181, 228, 181);
     opacity: 0;
   }
   to {
-    right: 250px;
+    right: 200px;
     opacity: 1;
   }
 }

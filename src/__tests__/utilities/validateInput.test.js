@@ -18,7 +18,8 @@ describe('Validate Signin function', () => {
     };
     const errors = validateSignin(payload);
     expect(errors).toHaveProperty(
-      'password', 'password length must be at least 8 characters');
+      'password', 'password length must be at least 8 characters'
+    );
   });
 
   it('should return an error on invalid email', () => {

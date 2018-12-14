@@ -9,7 +9,7 @@ $background_color_3: #fff;
 $background_color_4: #E2E2E2;
 $border_color_1: #E47E08;
 
-@keyframes "loading" {
+@keyframes loading {
 	100% {
 		transform: translateX(100%);
 	}
@@ -97,16 +97,16 @@ blockquote {
 	>i {
 		font-size: 20px;
 		color: $color_2;
-		margin-right: 20px;
+		margin-right: 15px;
 		cursor: pointer;
 	}
 }
 .article--reaction__like {
-	padding-left: 40px;
+	padding-left: 32px;
 	>i {
 		color: $color_3;
 		font-size: 20px;
-		margin-right: 20px;
+		margin-right: 15px;
 		cursor: pointer;
 		&:hover {
 			color: $color_4;

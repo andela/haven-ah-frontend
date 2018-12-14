@@ -20,3 +20,7 @@ export const setUsername = (message) => {
   const username = message.slice(6, commaPos);
   localStorage.setItem('username', username);
 };
+
+export const getToken = () => {
+  return localStorage.getItem('token');
+};

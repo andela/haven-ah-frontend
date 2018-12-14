@@ -1,0 +1,106 @@
+@import './../../../../public/styles/colors.scss';
+
+
+.comment-card {
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid $white-grey;
+    border-radius: 5px;
+}
+
+.comment-area {
+    padding: 10px;
+    margin: 20px 0;
+    border: 1px solid $white-grey;
+    border-radius: 5px;
+}
+
+.add-comment-text {
+    margin: 10px 10px;
+}
+
+.commenter-avatar__image {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+}
+
+.commentbox--owner {
+    cursor: pointer;
+}
+
+.commentbox-input {
+    margin-top: 10px;
+}
+
+.comment-card__name {
+    margin-left: 15px;
+
+    div:first-child {
+        font-size: 12px;
+    }
+}
+
+.comment-card__time {
+    font-size: 10px;
+}
+
+.comment-card__reaction {
+    .like_icon {
+        color: $medium-gray;
+        cursor: pointer;
+    }
+
+    .like_icon:hover {
+        color: $medium-gray;
+        transition: ease-in-out .5s;
+    }
+}
+
+.comment-card__reply-text {
+    right: 0;
+    margin-right: 10px;
+    color: #a0a0a0;
+}
+
+.comment-highlighted-textbox {
+    padding: 10px;
+    margin: 20px 0;
+    border: 1px solid $white-grey;
+    border-radius: 5px;
+
+    .highlighted-text{
+        background-color: $highlight-color;
+        padding: 5px;
+    }
+}
+
+.replybox-card {
+     padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.replybox-card__name > span:first-child {
+    font-size: 12px;
+}
+
+.replybox-card__time {
+    font-size: 10px;
+}
+
+.replybox-card__name {
+    margin-left: 15px;
+}
+
+.replybox-card__reply-text {
+  margin-left: 30px;
+    color: #a0a0a0;
+    cursor: pointer;
+}
+
+.replybox-card__reaction > i {
+    color: #a0a0a0;
+    cursor: pointer;
+}

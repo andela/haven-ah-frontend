@@ -94,8 +94,18 @@ describe('Love article saga:', () => {
 });
 
 describe('Like saga failure:', () => {
-  mockAxios.post.mockImplementationOnce(() => Promise.resolve({
-  }));
+  mockAxios.post.mockImplementationOnce((error) => {
+    error = {
+      response: {
+        status: 400,
+        message: 'Bad Request',
+        data: {
+          message: 'Hey, use the right URL'
+        }
+      }
+    };
+    return Promise.reject(error);
+  });
 
   it('should execute saga workers', async (done) => {
     const store = mockStore({});
@@ -105,7 +115,9 @@ describe('Like saga failure:', () => {
       { type: LIKE_REQUEST },
       {
         type: LIKE_FAILURE,
-        error: 'Cannot read property \'status\' of undefined',
+        error: {
+          message: 'Hey, use the right URL'
+        },
       }
     ];
 
@@ -120,8 +132,18 @@ describe('Like saga failure:', () => {
 });
 
 describe('Love article saga failure:', () => {
-  mockAxios.post.mockImplementationOnce(() => Promise.resolve({
-  }));
+  mockAxios.post.mockImplementationOnce((error) => {
+    error = {
+      response: {
+        status: 400,
+        message: 'Bad Request',
+        data: {
+          message: 'Hey, use the right URL'
+        }
+      }
+    };
+    return Promise.reject(error);
+  });
 
   it('should execute saga workers', async (done) => {
     const store = mockStore({});
@@ -131,7 +153,9 @@ describe('Love article saga failure:', () => {
       { type: LOVE_REQUEST },
       {
         type: LOVE_FAILURE,
-        error: 'Cannot read property \'status\' of undefined',
+        error: {
+          message: 'Hey, use the right URL'
+        }
       }
     ];
 

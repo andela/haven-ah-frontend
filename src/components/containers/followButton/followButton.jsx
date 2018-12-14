@@ -7,6 +7,33 @@ import {
 } from '../../../actions/followUser';
 
 class FollowButton extends Component {
+  constructor(props) {
+    super(props);
+    const {
+      article: {
+        Reactions: {
+          hasFollowedAuthor,
+        }
+      },
+    } = this.props;
+
+    this.state = {
+      hasFollowedAuthor,
+    };
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const checkFollowing = nextProps.following === this.props.following;
+
+    if (!checkFollowing) {
+      this.setState({
+        hasFollowedAuthor: !this.state.hasFollowedAuthor,
+      });
+      return true;
+    }
+    return true;
+  }
+
   handleFollow = () => {
     const { username } = this.props.article.Author;
     this.props.followUserAction(username);
@@ -18,7 +45,7 @@ class FollowButton extends Component {
   }
 
   render() {
-    const { hasFollowedAuthor } = this.props.article.Reactions;
+    const { hasFollowedAuthor } = this.state;
     return (
       hasFollowedAuthor
         ? <button

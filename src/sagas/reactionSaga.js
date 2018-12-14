@@ -14,7 +14,13 @@ import {
 
 
 const token = localStorage.getItem('token');
-const like = (slug) => {
+
+/**
+ * Like article
+ * @param {string} slug
+ * @returns {object} axios API call
+*/
+const likeArticle = (slug) => {
   return axios.post(`${process.env.API_URL}/articles/${slug}/reactions`,
     {
       reactionType: 'Like',
@@ -26,7 +32,52 @@ const like = (slug) => {
     });
 };
 
-const love = (slug) => {
+/**
+ * Like comment
+ * @param {string} slug
+ * @param { number } commentId
+ * @returns {object} axios API call
+*/
+const likeComment = (slug, commentId) => {
+  return axios
+    .post(`${
+      process.env.API_URL}/articles/${slug}/comments/${commentId}/reactions/`,
+    {
+      reactionType: 'Like',
+    },
+    {
+      headers: {
+        'x-access-token': token,
+      },
+    });
+};
+
+/**
+ * Love Comment
+ * @param {string} slug
+ * @param { number } commentId
+ * @returns {object} axios API call
+*/
+const loveComment = (slug, commentId) => {
+  return axios
+    .post(`${
+      process.env.API_URL}/articles/${slug}/comments/${commentId}/reactions/`,
+    {
+      reactionType: 'Love',
+    },
+    {
+      headers: {
+        'x-access-token': token,
+      },
+    });
+};
+
+/**
+ * Love article
+ * @param {string} slug
+ * @returns {object} axios API call
+*/
+const loveArticle = (slug) => {
   return axios.post(`${process.env.API_URL}/articles/${slug}/reactions`,
     {
       reactionType: 'Love',
@@ -44,14 +95,16 @@ const love = (slug) => {
  */
 export function* likeSaga(action) {
   try {
-    const { data } = yield call(like, action.slug);
-    if (data.status !== 201 && data.status !== 200) {
-      yield put(likeFailure(data.message));
+    let response;
+    if (action.commentId) {
+      response = yield call(likeComment, action.slug, action.commentId);
     } else {
-      yield put(likeSuccess(data));
+      response = yield call(likeArticle, action.slug);
     }
+    const { data } = response;
+    yield put(likeSuccess(data));
   } catch (error) {
-    yield put(likeFailure(error.message));
+    yield put(likeFailure(error.response.data));
   }
 }
 
@@ -61,14 +114,16 @@ export function* likeSaga(action) {
  */
 export function* loveSaga(action) {
   try {
-    const { data } = yield call(love, action.slug);
-    if (data.status !== 201 && data.status !== 200) {
-      yield put(loveFailure(data.message));
+    let response;
+    if (action.commentId) {
+      response = yield call(loveComment, action.slug, action.commentId);
     } else {
-      yield put(loveSuccess(data));
+      response = yield call(loveArticle, action.slug);
     }
+    const { data } = response;
+    yield put(loveSuccess(data));
   } catch (error) {
-    yield put(loveFailure(error.message));
+    yield put(loveFailure(error.response.data));
   }
 }
 

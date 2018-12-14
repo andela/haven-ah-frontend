@@ -2,7 +2,7 @@ import React from 'react';
 import { cleanup, fireEvent, render } from 'react-testing-library';
 import { BrowserRouter as Router } from 'react-router-dom';
 import LikeButton
-  from '../../../components/containers/reactions/likeButton';
+  from '../../../components/containers/reactions/LikeButton';
 import store from '../../testUtilities/store';
 import {
   articleThread,
@@ -31,7 +31,7 @@ describe('LikeButton Component', () => {
     const handleClick = jest.fn();
     const { getByTestId } = render(
       <Router>
-        <LikeButton store={articleThreadStore} />
+        <LikeButton store={articleThreadStore} onLike={jest.fn()} />
       </Router>
     );
     const like = getByTestId('like');

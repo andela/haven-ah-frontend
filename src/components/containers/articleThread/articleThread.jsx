@@ -7,14 +7,18 @@ import {
   WhatsappIcon, WhatsappShareButton,
   EmailIcon, EmailShareButton,
 } from 'react-share';
+import CommentSection from '../comments/CommentSection';
 import Preloader from './articlePreloader';
-import './articleThread.scss';
-import { fetchArticle } from '../../../actions/articleThread';
 import timeFormatter from '../../../helpers/timeFormatter';
 import FollowButton from '../followButton/followButton';
-import LikeButton from '../reactions/likeButton';
-import LoveButton from '../reactions/loveButton';
+import ReactionButtons from '../reactions/reactionButtons';
 import AlertBox from '../alerts/AlertBox';
+import './articleThread.scss';
+import {
+  fetchArticle,
+  getComments,
+  postComment,
+} from '../../../actions/articleThread';
 
 class ArticleThread extends Component {
   componentDidMount() {
@@ -30,19 +34,19 @@ class ArticleThread extends Component {
 
   shouldComponentUpdate(nextProps) {
     const checkReaction = nextProps.reaction === this.props.reaction;
-    const checkFollowing = nextProps.following === this.props.following;
 
-    if (!checkReaction || !checkFollowing) {
-      const { slug } = this.props.match.params;
-      this.props.fetchArticle(slug);
-
+    if (!checkReaction) {
       return true;
     }
     return true;
   }
 
   render() {
-    const { article } = this.props;
+    const {
+      article, comment, comments, match: { params: { slug, } },
+      getCommentsAction, postCommentAction
+    } = this.props;
+
     if (!article) {
       return (
         <Preloader />
@@ -104,12 +108,7 @@ class ArticleThread extends Component {
                 {
                   following.error
                   && <AlertBox
-                    message={'You need to sign in first'} theme="danger"/>
-                }
-                {
-                  following.payload
-                  && <AlertBox
-                    message={following.payload.message} theme="success" />
+                    message={following.error.message} theme="danger"/>
                 }
                 <div className="article--author__details">
                   <div className="justify-content__start">
@@ -132,28 +131,12 @@ class ArticleThread extends Component {
                 {
                   reaction.error
                   && <AlertBox
-                    message={'You need to sign in first'} theme="danger"/>
-                }
-                {
-                  reaction.payload
-                  && <AlertBox
-                    message={reaction.payload.message} theme="success" />
+                    message={reaction.error.message} theme="danger"/>
                 }
                 <div className="article--reaction">
                   <div className="justify-space-between">
                     <div className="justify-content__start">
-                      <div className="article--reaction__love">
-                        <LoveButton />
-                        <span className="article--reaction__love-count">
-                          {article.Reactions.loveCount}
-                        </span>
-                      </div>
-                      <div className="article--reaction__like">
-                        <LikeButton />
-                        <span className="article--reaction__like-count">
-                          {article.Reactions.likesCount}
-                        </span>
-                      </div>
+                      <ReactionButtons />
                       <div className="article--reaction__like">
                         <i className="fa fa-bookmark-o fa-2x" />
                       </div>
@@ -193,16 +176,16 @@ class ArticleThread extends Component {
               </div>
               <div className="column is-2" />
             </div>
-            <div className="columns comments">
-              <div className="column is-2" />
-              <div className="column">
-                <button className="button is-light is-medium is-fullwidth">
-                  Load Comments...
-                </button>
-              </div>
-              <div className="column is-2" />
-            </div>
           </div>
+        </section>
+        <section>
+          <CommentSection
+            comments={comments}
+            postComment={postCommentAction}
+            getComments={getCommentsAction}
+            slug={slug}
+            comment={comment}
+          />
         </section>
       </div>
     );
@@ -213,19 +196,31 @@ const mapStateToProps = state => ({
   article: state.articleThread.article,
   following: state.following,
   reaction: state.reaction,
+  comments: state.articleThread.comments,
+  comment: state.articleThread.comment
 });
 
 ArticleThread.propTypes = {
   article: PropTypes.object,
   fetchArticle: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  getCommentsAction: PropTypes.func,
+  postCommentAction: PropTypes.func,
+  comments: PropTypes.array.isRequired,
+  comment: PropTypes.object,
   reaction: PropTypes.object,
   following: PropTypes.object,
 };
 
-LikeButton.defaultProps = {
+ArticleThread.defaultProps = {
   reaction: {},
   following: {},
 };
 
-export default connect(mapStateToProps, { fetchArticle })(ArticleThread);
+const actions = {
+  fetchArticle,
+  getCommentsAction: getComments,
+  postCommentAction: postComment,
+};
+
+export default connect(mapStateToProps, actions)(ArticleThread);

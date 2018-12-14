@@ -1,20 +1,46 @@
-import {
-  ARTICLE_THREAD_REQUEST,
-  ARTICLE_THREAD_SUCCESS,
-  ARTICLE_THREAD_FAILURE
-} from '../actionTypes/articleThreadActionTypes';
+import * as types from '../actionTypes/articleThreadActionTypes';
 
 export const fetchArticle = slug => ({
-  type: ARTICLE_THREAD_REQUEST,
+  type: types.ARTICLE_THREAD_REQUEST,
   payload: slug
 });
 
 export const fetchArticleSuccess = data => ({
-  type: ARTICLE_THREAD_SUCCESS,
+  type: types.ARTICLE_THREAD_SUCCESS,
   payload: data,
 });
 
 export const fetchArticleFailure = error => ({
-  type: ARTICLE_THREAD_FAILURE,
+  type: types.ARTICLE_THREAD_FAILURE,
+  payload: error,
+});
+
+export const getComments = slug => ({
+  type: types.GET_COMMENTS_REQUEST,
+  payload: slug,
+});
+
+export const getCommentsSuccess = comments => ({
+  type: types.GET_COMMENTS_SUCCESS,
+  payload: comments,
+});
+
+export const getCommentsFailure = response => ({
+  type: types.GET_COMMENTS_FAILURE,
+  payload: response.error,
+});
+
+export const postComment = commentObj => ({
+  type: types.POST_COMMENT_REQUEST,
+  payload: commentObj,
+});
+
+export const postCommentSuccess = newComment => ({
+  type: types.POST_COMMENT_SUCCESS,
+  payload: newComment,
+});
+
+export const postCommentFailure = error => ({
+  type: types.POST_COMMENT_SUCCESS,
   payload: error,
 });

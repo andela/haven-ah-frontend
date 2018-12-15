@@ -9,8 +9,7 @@ import {
   EmailIcon, EmailShareButton,
 } from 'react-share';
 import FollowButton from '../followButton/followButton';
-import LikeButton from '../reactions/likeButton';
-import LoveButton from '../reactions/loveButton';
+import ReactionButtons from '../reactions/reactionButtons';
 import AlertBox from '../alerts/AlertBox';
 import CommentSection from '../comments/CommentSection';
 import Preloader from './articlePreloader';
@@ -22,6 +21,8 @@ import {
   getComments,
   postComment,
 } from '../../../actions/articleThread';
+import BookmarkArticle from '../bookmarkArticle/bookmarkArticle';
+import bookmarkCheck from '../../../helpers/bookmarkCheck';
 
 class ArticleThread extends Component {
   componentDidMount() {
@@ -37,10 +38,9 @@ class ArticleThread extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const checkReaction = nextProps.reaction === this.props.reaction;
     const checkFollowing = nextProps.following === this.props.following;
 
-    if (!checkReaction || !checkFollowing) {
+    if (!checkFollowing) {
       const { slug } = this.props.match.params;
       this.props.fetchArticle(slug);
 
@@ -52,15 +52,20 @@ class ArticleThread extends Component {
   render() {
     const {
       fetchingComments,
-      article, newComment, comments, match: { params: { slug, } },
+      newComment, comments, match: { params: { slug, } },
       getCommentsAction, postCommentAction
     } = this.props;
+
+    let { article } = this.props;
 
     if (!article) {
       return (
         <Preloader />
       );
     }
+
+    article = bookmarkCheck([article]);
+    [article] = article;
 
     const currentUser = localStorage.getItem('username');
     const isOwner = currentUser === article.Author.username;
@@ -117,12 +122,7 @@ class ArticleThread extends Component {
                 {
                   following.error
                   && <AlertBox
-                    message={'You need to sign in first'} theme="danger"/>
-                }
-                {
-                  following.payload
-                  && <AlertBox
-                    message={following.payload.message} theme="success" />
+                    message={following.error.message} theme="danger"/>
                 }
                 <div className="article--author__details">
                   <div className="justify-content__start">
@@ -145,30 +145,14 @@ class ArticleThread extends Component {
                 {
                   reaction.error
                   && <AlertBox
-                    message={'You need to sign in first'} theme="danger"/>
-                }
-                {
-                  reaction.payload
-                  && <AlertBox
-                    message={reaction.payload.message} theme="success" />
+                    message={reaction.error.message} theme="danger"/>
                 }
                 <div className="article--reaction">
                   <div className="justify-space-between">
                     <div className="justify-content__start">
-                      <div className="article--reaction__love">
-                        <LoveButton />
-                        <span className="article--reaction__love-count">
-                          {article.Reactions.loveCount}
-                        </span>
-                      </div>
+                      <ReactionButtons />
                       <div className="article--reaction__like">
-                        <LikeButton />
-                        <span className="article--reaction__like-count">
-                          {article.Reactions.likesCount}
-                        </span>
-                      </div>
-                      <div className="article--reaction__like">
-                        <i className="fa fa-bookmark-o fa-2x" />
+                        <BookmarkArticle article={article} />
                       </div>
                     </div>
                     <div className="is-inline article--social-share">
@@ -247,17 +231,14 @@ ArticleThread.propTypes = {
 };
 
 ArticleThread.defaultProps = {
+  reaction: {},
+  following: {},
   article: null,
   getCommentsAction: () => { },
   postCommentAction: () => { },
   comments: [],
-  newComment: {},
+  newComment: null,
   fetchingComments: false,
-};
-
-LikeButton.defaultProps = {
-  reaction: {},
-  following: {},
 };
 
 const actions = {

@@ -23,7 +23,8 @@ const UserNavItems = () => {
         <div className="navbar-dropdown is-boxed">
           {userNavOptions.map((item, index) => {
             return (
-              <Link key={index} className="navbar-item" to={`/${item.toLowerCase()}`}>
+              <Link key={index}
+                className="navbar-item" to={`/${item.toLowerCase()}`}>
                 {item}
               </Link>
             );

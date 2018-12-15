@@ -13,7 +13,11 @@ const AlertBox = ({ theme, message }) => {
 
 AlertBox.propTypes = {
   theme: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired
+  message: PropTypes.string,
+};
+
+AlertBox.defaultProps = {
+  message: null,
 };
 
 export default AlertBox;

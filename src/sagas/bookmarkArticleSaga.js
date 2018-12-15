@@ -54,7 +54,9 @@ export function* bookmarkArticleSaga(action) {
  */
 export function* unbookmarkArticleSaga(action) {
   try {
-    const response = yield call(unbookmarkArticle, action.payload.slug, action.payload.id);
+    const response = yield call(
+      unbookmarkArticle, action.payload.slug, action.payload.id
+    );
     if (response.data.status !== 202) {
       yield put(unbookmarkArticleFailure(response.data.data.message));
     } else {

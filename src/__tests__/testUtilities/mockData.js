@@ -22,8 +22,90 @@ export const articleThread = {
         hasFollowedAuthor: false,
         hasLiked: true,
         hasLoved: true,
+      },
+      Bookmark: [
+        {
+          id: 5,
+          articleId: 3,
+          userId: 3,
+          createdAt: '2018-11-28T14:23:28.554Z',
+        }
+      ],
+    },
+    comments: [
+      {
+        id: 10,
+        image: null,
+        body: 'Obi is a boy',
+        User: {},
+        createdAt: '2018-11-29T14:23:28.492Z',
+        highlightedText: null,
+        Replies: [
+          {
+            id: 3,
+            image: null,
+            body: 'Priscilla is a girl',
+            User: {},
+            createdAt: null,
+            highlightedText: null,
+            Reactions: {
+              loves: 10,
+              likes: 13,
+              currentUserReaction: 'Love',
+            }
+          }
+        ],
+        Reactions: {
+          loves: 10,
+          likes: 13,
+          currentUserReaction: 'Like',
+        },
+        Bookmark: [
+          {
+            id: 5,
+            articleId: 3,
+            userId: 3,
+            createdAt: '2018-11-28T14:23:28.554Z',
+          }
+        ],
+      },
+      {
+        id: 11,
+        image: null,
+        body: 'Ada is a girl',
+        User: {},
+        highlightedText: null,
+        createdAt: '2018-11-28T14:23:28.492Z',
+        Replies: [
+          {
+            id: 4,
+            image: null,
+            body: 'Sullivan is a man',
+            User: {},
+            createdAt: null,
+            highlightedText: null,
+            Reactions: {
+              loves: 10,
+              likes: 13,
+              currentUserReaction: 'Love',
+            }
+          }
+        ],
+        Reactions: {
+          loves: 10,
+          likes: 13,
+          currentUserReaction: 'Love',
+        },
+        Bookmark: [
+          {
+            id: 5,
+            articleId: 3,
+            userId: 3,
+            createdAt: '2018-11-28T14:23:28.554Z',
+          }
+        ],
       }
-    }
+    ],
   },
   following: {
     payload: {
@@ -37,6 +119,12 @@ export const articleThread = {
       message: 'Message',
     }
   },
+  bookmarkArticle: {
+    payload: {
+      status: 200,
+      message: 'Message',
+    }
+  }
 };
 
 export const articleThread2 = {
@@ -81,6 +169,14 @@ export const trendingArticles = {
         slug: 'a-slug-85988640950',
         authorImage: 'https://',
         authorName: 'presley',
+        Bookmark: [
+          {
+            id: 5,
+            articleId: 3,
+            userId: 3,
+            createdAt: '2018-11-28T14:23:28.554Z',
+          }
+        ],
       },
       {
         id: 2,
@@ -107,3 +203,91 @@ export const redirectSignup = {
     search: 'https://haven-ah-frontend.herokuapp.com/?token=ndjndjsfd',
   },
 };
+
+export const comment = {
+  id: 2,
+  image: null,
+  body: 'Obi is a boy',
+  User: {},
+  createdAt: null,
+  highlightedText: null,
+  Replies: [
+    {
+      id: 4,
+      image: null,
+      body: 'Sullivan is a man',
+      User: {},
+      createdAt: '2018-11-28T14:23:28.492Z',
+      highlightedText: null,
+      Reactions: {
+        loves: 10,
+        likes: 13,
+        currentUserReaction: 'Love',
+      }
+    },
+  ],
+  Reactions: {
+    loves: 20,
+    likes: 23,
+    currentUserReaction: 'Love'
+  }
+};
+
+export const comments = [
+  {
+    id: 10,
+    image: null,
+    body: 'Obi is a boy',
+    User: {},
+    createdAt: '2018-11-28T14:23:28.492Z',
+    highlightedText: null,
+    Replies: [
+      {
+        id: 3,
+        image: null,
+        body: 'Priscilla is a girl',
+        User: {},
+        createdAt: null,
+        highlightedText: null,
+        Reactions: {
+          loves: 10,
+          likes: 13,
+          currentUserReaction: 'Love',
+        }
+      }
+    ],
+    Reactions: {
+      loves: 10,
+      likes: 13,
+      currentUserReaction: 'Like',
+    }
+  },
+  {
+    id: 11,
+    image: null,
+    body: 'Ada is a girl',
+    User: {},
+    createdAt: '2018-11-29T14:23:28.492Z',
+    highlightedText: null,
+    Replies: [
+      {
+        id: 4,
+        image: null,
+        body: 'Sullivan is a man',
+        User: {},
+        createdAt: null,
+        highlightedText: null,
+        Reactions: {
+          loves: 10,
+          likes: 13,
+          currentUserReaction: 'Love',
+        }
+      }
+    ],
+    Reactions: {
+      loves: 10,
+      likes: 13,
+      currentUserReaction: 'Love',
+    }
+  }
+];

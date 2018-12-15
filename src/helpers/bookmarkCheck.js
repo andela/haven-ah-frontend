@@ -4,10 +4,10 @@
  * @returns article
  */
 const bookmarkCheck = (articles) => {
-  const userid = localStorage.getItem('userid');
+  const userId = localStorage.getItem('userId');
   return articles.map((article) => {
     const bookmarked = article.Bookmark
-      .filter(bookmark => bookmark.userId === parseInt(userid, 10));
+      .filter(bookmark => bookmark.userId === parseInt(userId, 10));
 
     const hasBookmarked = bookmarked.length > 0;
     article.bookmarkFlag = hasBookmarked;

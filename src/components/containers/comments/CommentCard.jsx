@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { formatTime } from '../../../helpers/timeFormatter';
 import image from '../../../../public/images/man.png';
 import './comment.scss';
+import ReactionButtons from '../reactions/reactionButtons';
+import LOVE from '../../../utilities/reactionConstants';
 
 class CommentCard extends Component {
   state = {}
@@ -23,7 +25,10 @@ class CommentCard extends Component {
   render() {
     const { comment } = this.props;
     const {
-      body, User, createdAt, highlightedText, Replies
+      id, body, User, createdAt, highlightedText, Replies,
+      Reactions: {
+        currentUserReaction, loves,
+      },
     } = comment;
 
     return (
@@ -63,6 +68,11 @@ class CommentCard extends Component {
             <p>{body}</p>
           </div>
           <div className="justify-space-between mt-1">
+            <ReactionButtons
+              commentId={id}
+              loves={loves}
+              hasLoved={currentUserReaction === LOVE}
+            />
             {
               Replies && Replies.length > 0 && <span className="ml-1">
                 <a href=""

@@ -49,11 +49,11 @@ class BookmarkArticle extends Component {
        localStorage.getItem('token')
          ? <span>
            {bookmarkFlag
-             ? <a data-testid="bookmark"
+             ? <i data-testid="bookmark"
                className="fa fa-bookmark fonticons-20"
                data-id={id}
                onClick={this.handleUnBookmark} id={this.props.bookmarkId}/>
-             : <a data-testid="bookmark"
+             : <i data-testid="bookmark"
                className="fa fa-bookmark-o fonticons-20"
                data-id={id}
                onClick={this.handleBookmark} />}

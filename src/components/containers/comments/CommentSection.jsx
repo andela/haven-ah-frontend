@@ -14,7 +14,7 @@ class CommentSection extends Component {
     replies: [],
     displayModal: false,
     comments: [],
-    count: 0,
+    count: 1,
     lastMaxScrollPos: 0
   }
 
@@ -77,9 +77,12 @@ class CommentSection extends Component {
     const {
       newComment, comments, slug, fetching,
     } = this.props;
-
     const { count } = this.state;
-
+    if (newComment) {
+      newComment.Reactions = {
+        loves: 0,
+      };
+    }
     return (
       <div className="container">
         {this.renderModal()}

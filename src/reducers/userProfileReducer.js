@@ -1,12 +1,15 @@
 import {
   USER_PROFILE_REQUEST,
   USER_PROFILE_SUCCESS,
-  USER_PROFILE_FAILURE
+  USER_PROFILE_FAILURE,
+  USER_BOOKMARK_SUCCESS,
+  USER_BOOKMARK_FAILURE
 } from '../actionTypes/userProfileActionType';
 
 const initialState = {
   fetching: false,
   profile: null,
+  bookmarks: null,
   error: null
 };
 
@@ -23,7 +26,21 @@ export default (state = initialState, action) => {
     };
   case USER_PROFILE_FAILURE:
     return {
-      ...state, fetching: false, profile: null, error: action.payload,
+      ...state,
+      fetching: false,
+      error: action.payload,
+    };
+  case USER_BOOKMARK_SUCCESS:
+    return {
+      ...state,
+      fetching: false,
+      bookmarks: action.payload,
+    };
+  case USER_BOOKMARK_FAILURE:
+    return {
+      ...state,
+      fetching: false,
+      error: action.payload,
     };
   default:
     return state;

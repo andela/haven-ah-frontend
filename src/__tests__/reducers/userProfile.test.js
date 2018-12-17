@@ -8,6 +8,7 @@ describe('User profile reducer: ', () => {
     })).toEqual({
       fetching: false,
       profile: null,
+      bookmarks: null,
       error: null
     });
   });
@@ -18,6 +19,7 @@ describe('User profile reducer: ', () => {
     })).toEqual({
       fetching: true,
       profile: null,
+      bookmarks: null,
       error: null
     });
   });
@@ -29,6 +31,7 @@ describe('User profile reducer: ', () => {
     })).toEqual({
       fetching: false,
       profile: { firstName: 'sullivan' },
+      bookmarks: null,
       error: false
     });
   });
@@ -40,6 +43,31 @@ describe('User profile reducer: ', () => {
     })).toEqual({
       fetching: false,
       profile: null,
+      bookmarks: null,
+      error: 'Bad request'
+    });
+  });
+
+  it('should update the reducer state with bookmarks', () => {
+    expect(userProfileReducer(undefined, {
+      type: types.USER_BOOKMARK_SUCCESS,
+      payload: []
+    })).toEqual({
+      fetching: false,
+      profile: null,
+      bookmarks: [],
+      error: null
+    });
+  });
+
+  it('should add error to the reducer state', () => {
+    expect(userProfileReducer(undefined, {
+      type: types.USER_BOOKMARK_FAILURE,
+      payload: 'Bad request'
+    })).toEqual({
+      fetching: false,
+      profile: null,
+      bookmarks: null,
       error: 'Bad request'
     });
   });

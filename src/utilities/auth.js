@@ -50,3 +50,11 @@ export const clearCredentials = () => {
   localStorage.removeItem('userid');
   localStorage.removeItem('username');
 };
+
+/**
+ * Function to get username
+ * @returns {string} username
+ */
+export const getUsername = () => {
+  return localStorage.getItem('username');
+};

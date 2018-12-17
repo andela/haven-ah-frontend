@@ -17,6 +17,7 @@ export const articleThread = {
   }
 };
 
+
 export const createArticleInitialState = {
   createArticle: {
     slug: null
@@ -32,5 +33,26 @@ export const createArticleState = {
 export const match = {
   params: {
     slug: 'dummy-slug'
+  }
+};
+
+export const initialProfileThread = {
+  profileThread: {}
+};
+
+export const userProfile = {
+  userProfile: {
+    profile: {
+      firstName: 'Sullivan',
+      lastName: 'Wisdom',
+      username: 'wizzy',
+      bio: 'trying his best'
+    }
+  }
+};
+
+export const profileMatch = {
+  params: {
+    username: 'wisdom',
   }
 };

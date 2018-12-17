@@ -1,11 +1,11 @@
 import React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import { render } from 'react-testing-library';
 import App from '../../App';
 
-const renderer = new ShallowRenderer();
+// const renderer = new ShallowRenderer();
 
 describe('App', () => {
   it('should render without crashing', () => {
-    renderer.render(<App />);
+    render(<App />);
   });
 });

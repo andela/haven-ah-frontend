@@ -12,6 +12,8 @@ import watchPostArticleSaga from './createArticleSaga';
 import watchGetComments from './getCommentsSaga';
 import watchPostComment from './postCommentSaga';
 
+import { watchBookmarkArticle, watchUnbookmarkArticle }
+  from './bookmarkArticleSaga';
 /**
  * The root saga
  */
@@ -31,6 +33,8 @@ function* rootSaga() {
     watchPostArticleSaga(),
     watchGetComments(),
     watchPostComment(),
+    watchBookmarkArticle(),
+    watchUnbookmarkArticle(),
   ]);
 }
 

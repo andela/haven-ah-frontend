@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
       ...state,
       error: false,
       fetching: false,
-      articles: action.articles
+      articles: action.articles,
     };
   case RECENT_ARTICLES_FAILURE:
     return {

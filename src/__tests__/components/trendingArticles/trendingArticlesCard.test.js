@@ -1,21 +1,27 @@
 import React from 'react';
 import { render, cleanup } from 'react-testing-library';
 import { BrowserRouter as Router } from 'react-router-dom';
-import TrendingArticlesCard from '../../../components/trendingsection/TrendingCard';
+import { Provider } from 'react-redux';
+import TrendingArticlesCard
+  from '../../../components/trendingsection/TrendingCard';
 import store from '../../../store';
 
 afterEach(cleanup);
 
-describe('Hero Section  component', () => {
+describe('Trending Section  component', () => {
   it('should render without crashing', () => {
-    render(<Router>
+    render(<Provider store={store}><Router>
       <TrendingArticlesCard
         readtime={80}
         title={'hello'}
         description={'holla'}
         images={[]}
+        slug={'gshjbdhjhvjj'}
+        authorImage={'https://'}
+        authorName={'uche'}
+        bookmarkFlag={false}
         store={store}
       />
-    </Router>);
+    </Router></Provider>);
   });
 });

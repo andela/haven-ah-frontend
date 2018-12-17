@@ -22,7 +22,6 @@ class FeaturedAuthor extends PureComponent {
     if (data) {
       ({ featuredAuthor, followers } = data);
     }
-
     const style = featuredAuthor ? { width: '700px' } : { width: '100%' };
     return { featuredAuthor, followers, style };
   }
@@ -116,11 +115,11 @@ class FeaturedAuthor extends PureComponent {
                   You can start writing articles on your favourite topic
                 </h1>
                 <div className="display-center">
-                  <button className="button is-orange is-rounded">
-                    <Link className="button__link" to="/new-article">
-                      Start Writing
-                    </Link>
-                  </button>
+                  <Link
+                    to="/new-article"
+                    className="button is-orange is-rounded">
+                    Start Writing
+                  </Link>
                 </div>
               </div>
             </div>

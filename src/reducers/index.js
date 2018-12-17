@@ -9,6 +9,7 @@ import singleArticleReducer from './articleThread';
 import followUserReducer from './followUser';
 import reactionReducer from './reactionReducer';
 import createArticleReducer from './createArticle';
+import bookmarkArticleReducer from './boomarkArticle';
 
 
 export default combineReducers({
@@ -21,5 +22,6 @@ export default combineReducers({
   articleThread: singleArticleReducer,
   following: followUserReducer,
   reaction: reactionReducer,
-  createArticle: createArticleReducer
+  createArticle: createArticleReducer,
+  bookmarkArticle: bookmarkArticleReducer
 });

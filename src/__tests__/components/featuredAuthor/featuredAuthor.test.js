@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { render, cleanup } from 'react-testing-library';
+import { BrowserRouter as Router } from 'react-router-dom';
 import FeaturedAuthorComponent from
   '../../../components/containers/featuredAuthor/FeaturedAuthor';
 import store from '../../../store';

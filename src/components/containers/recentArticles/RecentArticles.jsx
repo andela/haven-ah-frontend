@@ -5,10 +5,19 @@ import PropTypes from 'prop-types';
 import './recentArticles.css';
 import { recentArticlesAction } from '../../../actions/recentArticlesAction';
 import RecentArticleCard from './recentArticlesCard';
+import bookmarkCheck from '../../../helpers/bookmarkCheck';
 
 class RecentArticles extends Component {
   componentDidMount() {
     this.props.recentArticlesAction();
+  }
+
+  renderArticleCard(start, end) {
+    return this.props.articles
+      && this.props.articles.slice(start, end).map((article) => {
+        bookmarkCheck(this.props.articles);
+        return (<RecentArticleCard key={article.id} article={article} />);
+      });
   }
 
   render() {
@@ -23,20 +32,10 @@ class RecentArticles extends Component {
             </div>
           </div>
           < div className = "columns is-variable is-8 mt-3">
-            {
-              this.props.articles
-            && this.props.articles.slice(0, 3).map((article) => {
-              return (<RecentArticleCard key={article.id} article={article} />);
-            })
-            }
+            {this.renderArticleCard(0, 3)}
           </div>
           < div className = "columns is-variable is-8 mt-3">
-            {
-              this.props.articles
-            && this.props.articles.slice(3, 6).map((article) => {
-              return (<RecentArticleCard key={article.id} article={article} />);
-            })
-            }
+            {this.renderArticleCard(3, 6)}
           </div>
         </div>
       </section>
@@ -46,14 +45,17 @@ class RecentArticles extends Component {
 
 const mapStateToProps = state => ({
   articles: state.recentArticles.articles,
+  bookmark: state.bookmarkArticle.payload,
 });
 
 RecentArticles.propTypes = {
   recentArticlesAction: PropTypes.func.isRequired,
   articles: PropTypes.array,
+  bookmark: PropTypes.object,
 };
 RecentArticles.defaultProps = {
   articles: [],
+  bookmark: {}
 };
 
 export default connect(mapStateToProps,

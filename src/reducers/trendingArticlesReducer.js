@@ -4,6 +4,7 @@ import {
   TRENDING_ARTICLES_FAILURE
 } from '../actionTypes/trendingActionType';
 
+
 const initialState = {
   fetching: false,
   articles: [],

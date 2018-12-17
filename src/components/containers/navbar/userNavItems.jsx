@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const userNavOptions = [
   'Profile',
   'Settings',
-  'Log Out'
+  'Logout'
 ];
 /**
  * Functional react component
@@ -23,7 +23,7 @@ const UserNavItems = () => {
         <div className="navbar-dropdown is-boxed">
           {userNavOptions.map((item, index) => {
             return (
-              <Link key={index} className="navbar-item" to="#">
+              <Link key={index} className="navbar-item" to={`/${item.toLowerCase()}`}>
                 {item}
               </Link>
             );

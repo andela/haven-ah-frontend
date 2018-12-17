@@ -41,3 +41,12 @@ export const isLoggedIn = () => {
   }
   return loginState;
 };
+
+/**
+ * Function to clear user credentials
+ */
+export const clearCredentials = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('userid');
+  localStorage.removeItem('username');
+};

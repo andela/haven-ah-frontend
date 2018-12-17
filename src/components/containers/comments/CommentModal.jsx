@@ -10,7 +10,9 @@ class CommentModal extends Component {
   }
 
   render() {
-    const { comment, replies, displayModal } = this.props;
+    const {
+      comment, replies, displayModal, displayHistoryModal, slug
+    } = this.props;
     return (
       <div className="modal is-active">
         <div className="modal-background" />
@@ -28,7 +30,11 @@ class CommentModal extends Component {
           </header>
           <section className="modal-card-body">
             {
-              <CommentCard comment={comment} displayModal={displayModal} />
+              <CommentCard
+                comment={comment}
+                displayModal={displayModal}
+                displayHistoryModal={displayHistoryModal}
+                slug={slug} />
             }
             <div className="mt-1">
               <p className="is-size-5 ah-orange has-text-centered">Replies</p>
@@ -39,8 +45,12 @@ class CommentModal extends Component {
                   new Date(element.createdAt) - new Date(prevElement.createdAt)
                 );
               }).map(
-                reply => (<CommentCard
-                  comment={reply} key={reply.id} displayModal={displayModal} />)
+                reply => (
+                  <CommentCard
+                    comment={reply} key={reply.id}
+                    displayModal={displayModal}
+                    displayHistoryModal={displayHistoryModal}
+                    slug={slug} />)
               )
             }
           </section>
@@ -55,7 +65,8 @@ CommentModal.propTypes = {
   comment: PropTypes.object.isRequired,
   replies: PropTypes.array.isRequired,
   displayModal: PropTypes.func.isRequired,
-  hideModal: PropTypes.func.isRequired
+  hideModal: PropTypes.func.isRequired,
+  displayHistoryModal: PropTypes.func
 };
 
 export default CommentModal;

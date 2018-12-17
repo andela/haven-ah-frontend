@@ -37,6 +37,25 @@ export const articleThread = {
       message: 'Message',
     }
   },
+  commentHistory: {
+    editHistory: [
+      {
+        id: 12,
+        commentId: 21,
+        oldComment: 'I think the boy just wanted to get the most at one single go. Take the most you can mehn',
+        createdAt: '2018-12-18T10:02:31.772Z',
+        updatedAt: '2018-12-18T10:02:31.772Z'
+      },
+      {
+        id: 11,
+        commentId: 21,
+        oldComment: 'I think the boy just wanted to get the most at one go',
+        createdAt: '2018-12-18T04:29:08.405Z',
+        updatedAt: '2018-12-18T04:29:08.405Z'
+      }
+    ],
+    fetching: true
+  }
 };
 
 export const articleThread2 = {
@@ -93,6 +112,28 @@ export const trendingArticles = {
         authorName: 'presley',
       },
     ],
+  }
+};
+
+export const history = {
+  commentHistory: {
+    editHistory: [
+      {
+        id: 12,
+        commentId: 21,
+        oldComment: 'I think the boy just wanted to get the most at one single go. Take the most you can mehn',
+        createdAt: '2018-12-18T10:02:31.772Z',
+        updatedAt: '2018-12-18T10:02:31.772Z'
+      },
+      {
+        id: 11,
+        commentId: 21,
+        oldComment: 'I think the boy just wanted to get the most at one go',
+        createdAt: '2018-12-18T04:29:08.405Z',
+        updatedAt: '2018-12-18T04:29:08.405Z'
+      }
+    ],
+    fetching: true
   }
 };
 

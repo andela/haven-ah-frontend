@@ -10,7 +10,7 @@ import followUserReducer from './followUser';
 import reactionReducer from './reactionReducer';
 import createArticleReducer from './createArticle';
 import bookmarkArticleReducer from './boomarkArticle';
-
+import commentHistoryReducer from './commentHistory';
 
 export default combineReducers({
   heroArticle: heroArticleReducer,
@@ -23,5 +23,6 @@ export default combineReducers({
   following: followUserReducer,
   reaction: reactionReducer,
   createArticle: createArticleReducer,
-  bookmarkArticle: bookmarkArticleReducer
+  bookmarkArticle: bookmarkArticleReducer,
+  commentHistory: commentHistoryReducer,
 });

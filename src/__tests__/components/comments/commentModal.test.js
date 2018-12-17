@@ -24,11 +24,12 @@ describe('Comment section component', () => {
     const hideModal = jest.fn();
 
     render(
-      <Router><CommentModal
-        comment={comment}
-        replies={[]}
-        displayModal={displayModal}
-        hideModal={hideModal} />
+      <Router>
+        <CommentModal
+          comment={comment}
+          replies={[]}
+          displayModal={displayModal}
+          hideModal={hideModal} />
       </Router>
     );
   });

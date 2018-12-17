@@ -9,7 +9,11 @@ export const articleThread = {
       tags: ['bread', 'cake'],
       images: null,
       Author: []
-    }
+    },
+    commenting: false,
+    fetchingComments: false,
+    newComment: null,
+    comments: [],
   }
 };
 

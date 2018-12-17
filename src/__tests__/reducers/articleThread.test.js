@@ -2,24 +2,27 @@ import articleThreadReducer from '../../reducers/articleThread';
 import * as types from '../../actionTypes/articleThreadActionTypes';
 
 describe('Single article reducer: ', () => {
+  const state = {
+    fetching: false,
+    commenting: false,
+    fetchingComments: false,
+    article: null,
+    error: null,
+    comments: [],
+    newComment: null,
+    commentError: ''
+  };
+
   it('should have the correct default state', () => {
     expect(articleThreadReducer(undefined, {
       type: 'non-existent type'
-    })).toEqual({
-      fetching: false,
-      article: null,
-      error: null
-    });
+    })).toEqual(state);
   });
 
   it('should update the reducer state while fetching', () => {
     expect(articleThreadReducer(undefined, {
       type: types.ARTICLE_THREAD_REQUEST
-    })).toEqual({
-      fetching: true,
-      article: null,
-      error: null
-    });
+    })).toEqual({ ...state, fetching: true });
   });
 
   it('should update the state when successful', () => {
@@ -27,9 +30,8 @@ describe('Single article reducer: ', () => {
       type: types.ARTICLE_THREAD_SUCCESS,
       payload: { title: 'dummy' }
     })).toEqual({
-      fetching: false,
+      ...state,
       article: { title: 'dummy' },
-      error: null
     });
   });
 
@@ -38,9 +40,79 @@ describe('Single article reducer: ', () => {
       type: types.ARTICLE_THREAD_FAILURE,
       payload: 'Bad request'
     })).toEqual({
-      fetching: false,
-      article: null,
-      error: 'Bad request'
+      ...state,
+      error: 'Bad request',
+    });
+  });
+
+  it('should turn on fetching comments on making comments request', () => {
+    expect(articleThreadReducer(undefined, {
+      type: types.GET_COMMENTS_REQUEST,
+      payload: 'slug'
+    })).toEqual({
+      ...state,
+      fetchingComments: true,
+    });
+  });
+
+  const comments = [
+    {
+      id: 1,
+      body: 'My first comment'
+    },
+    {
+      id: 2,
+      body: 'My second comment'
+    },
+  ];
+
+  it('should update the state with comments', () => {
+    expect(articleThreadReducer(undefined, {
+      type: types.GET_COMMENTS_SUCCESS,
+      payload: comments
+    })).toEqual({
+      ...state,
+      comments,
+    });
+  });
+
+  it('should add error to the reducer state on get comments failure', () => {
+    expect(articleThreadReducer(undefined, {
+      type: types.GET_COMMENTS_FAILURE,
+      payload: 'Bad request'
+    })).toEqual({
+      ...state,
+      error: 'Bad request',
+    });
+  });
+
+  it('should set commenting to true', () => {
+    expect(articleThreadReducer(undefined, {
+      type: types.POST_COMMENT_REQUEST,
+      payload: {}
+    })).toEqual({
+      ...state,
+      commenting: true,
+    });
+  });
+
+  it('should update the reducer with new comment object', () => {
+    expect(articleThreadReducer(undefined, {
+      type: types.POST_COMMENT_SUCCESS,
+      payload: {}
+    })).toEqual({
+      ...state,
+      newComment: {},
+    });
+  });
+
+  it('should update the reducer with an error', () => {
+    expect(articleThreadReducer(undefined, {
+      type: types.POST_COMMENT_FAILURE,
+      payload: 'Bad request'
+    })).toEqual({
+      ...state,
+      commentError: 'Bad request',
     });
   });
 });

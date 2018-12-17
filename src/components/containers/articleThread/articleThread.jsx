@@ -24,6 +24,12 @@ import {
 } from '../../../actions/articleThread';
 
 class ArticleThread extends Component {
+  state = {
+    showCommentInput: false,
+    highlightedText: null,
+    isHighlighted: false,
+  }
+
   componentDidMount() {
     const {
       match: {
@@ -47,6 +53,46 @@ class ArticleThread extends Component {
       return true;
     }
     return true;
+  }
+
+  commentInput = React.createRef();
+
+  showCommentInput = () => {
+    this.setState({ showCommentInput: true });
+    setTimeout(() => this.commentInput.current.focus());
+    this.toggleCommentInput();
+    this.setState({
+      isHighlighted: false,
+    });
+  }
+
+  toggleCommentInput = () => {
+    window.addEventListener('click', (event) => {
+      if (!event.target.parentNode.className.includes('test')
+        && this.state.showCommentInput) {
+        this.setState({
+          showCommentInput: false,
+          highlightedText: null,
+          isHighlighted: false,
+        });
+      }
+    });
+  }
+
+  setHighlight = () => {
+    const highlightedText = window.getSelection().toString().trim();
+    this.setState({
+      highlightedText,
+      isHighlighted: true,
+    });
+  }
+
+  closeHighlight = () => {
+    this.setState({
+      highlightedText: null,
+      isHighlighted: false,
+    });
+    this.toggleCommentInput();
   }
 
   render() {
@@ -139,9 +185,23 @@ class ArticleThread extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="article--paragraph">
+                <div
+                  className="article--paragraph"
+                  onMouseUp={this.setHighlight}>
                   <p>{ReactHtmlParser(article.body)} </p>
                 </div>
+                {
+                  this.state.isHighlighted
+                  && <span className="article--highlight__comment test">
+                    <button
+                      className="button is-small highlight__comment"
+                      onClick={this.showCommentInput}>
+                      Add comment
+                    </button>
+                    <span className="delete"
+                      onClick={this.closeHighlight} />
+                  </span>
+                }
                 {
                   reaction.error
                   && <AlertBox
@@ -216,6 +276,11 @@ class ArticleThread extends Component {
             getComments={getCommentsAction}
             slug={slug}
             newComment={newComment}
+            showCommentInput={this.showCommentInput}
+            commentInputState={this.state.showCommentInput}
+            commentInput={this.commentInput}
+            highlightedText={this.state.highlightedText}
+            closeHighlight={this.closeHighlight}
           />
         </section>
       </div>

@@ -20,6 +20,11 @@ describe('Comment section component', () => {
   it('should render without crashing', () => {
     const postComment = jest.fn();
     const getComments = jest.fn();
+    const showCommentInput = jest.fn();
+    const commentInputState = true;
+    const commentInput = React.createRef();
+    const highlightedText = '';
+    const closeHighlight = jest.fn();
 
     render(
       <CommentSection fetching
@@ -27,13 +32,23 @@ describe('Comment section component', () => {
         postComment={postComment}
         getComments={getComments}
         slug={'slug'}
-        newComment={{}} />
+        newComment={{}}
+        showCommentInput={showCommentInput}
+        commentInputState={commentInputState}
+        commentInput={commentInput}
+        highlightedText={highlightedText}
+        closeHighlight={closeHighlight} />
     );
   });
 
   it('should load comments on button click', () => {
     const postComment = jest.fn();
     const getComments = jest.fn();
+    const showCommentInput = jest.fn();
+    const commentInputState = true;
+    const commentInput = React.createRef();
+    const highlightedText = '';
+    const closeHighlight = jest.fn();
 
     const { getByTestId } = render(
       <CommentSection fetching={false}
@@ -41,7 +56,12 @@ describe('Comment section component', () => {
         postComment={postComment}
         getComments={getComments}
         slug={'slug'}
-        newComment={{}} />
+        newComment={{}}
+        showCommentInput={showCommentInput}
+        commentInputState={commentInputState}
+        commentInput={commentInput}
+        highlightedText={highlightedText}
+        closeHighlight={closeHighlight} />
     );
 
     const btn = getByTestId('load-comments-btn');

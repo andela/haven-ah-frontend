@@ -10,7 +10,8 @@ import {
 const postComment = payload => (
   axios.post(`${process.env.API_URL}/articles/${payload.slug}/comments`,
     {
-      body: payload.comment
+      body: payload.comment,
+      highlightedText: payload.highlightedText,
     },
     {
       headers: {

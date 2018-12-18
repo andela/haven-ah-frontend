@@ -76,6 +76,8 @@ class CommentSection extends Component {
   render() {
     const {
       newComment, comments, slug, fetching,
+      postComment, showCommentInput, highlightedText,
+      commentInputState, commentInput, closeHighlight,
     } = this.props;
 
     const { count } = this.state;
@@ -86,7 +88,14 @@ class CommentSection extends Component {
         <div className="columns">
           <div className="column is-3" />
           <div className="column test">
-            <CommentForm slug={slug} postComment={this.props.postComment} />
+            <CommentForm
+              slug={slug}
+              postComment={postComment}
+              showCommentInput={showCommentInput}
+              commentInputState={commentInputState}
+              commentInput={commentInput}
+              highlightedText={highlightedText}
+              closeHighlight={closeHighlight} />
           </div>
           <div className="column is-3" />
         </div>
@@ -159,6 +168,16 @@ CommentSection.propTypes = {
   comments: PropTypes.array,
   postComment: PropTypes.func,
   getComments: PropTypes.func,
+  commentInputState: PropTypes.bool.isRequired,
+  commentInput: PropTypes.object.isRequired,
+  showCommentInput: PropTypes.func.isRequired,
+  highlightedText: PropTypes.string,
+  closeHighlight: PropTypes.func,
+};
+
+CommentForm.DefaultProps = {
+  highlightedText: null,
+  closeHighlight: null,
 };
 
 export default CommentSection;

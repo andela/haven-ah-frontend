@@ -10,25 +10,8 @@ class CommentForm extends Component {
     inputIsValid: false,
   }
 
-  commentInput = React.createRef();
-
-  showCommentInput = () => {
-    this.setState({ showCommentInput: true });
-    this.toggleCommentInput();
-    setTimeout(() => this.commentInput.current.focus());
-  }
-
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
-  }
-
-  toggleCommentInput = () => {
-    window.addEventListener('click', (event) => {
-      if (!event.target.parentNode.className.includes('test')
-        && this.state.showCommentInput) {
-        this.setState({ showCommentInput: false });
-      }
-    });
   }
 
   submit = (event) => {
@@ -37,17 +20,31 @@ class CommentForm extends Component {
     const { slug, postComment } = this.props;
 
     if (this.state.comment.length > 0) {
-      postComment({ slug, comment: this.state.comment });
+      postComment({
+        slug,
+        comment: this.state.comment,
+        highlightedText: this.props.highlightedText,
+      });
       postCommentFeedback.className = 'has-text-primary is-size-7 test';
       postCommentFeedback.innerHTML = 'You have posted your comment';
       this.setState({ comment: '' });
+      this.props.closeHighlight();
     } else {
       postCommentFeedback.className = 'has-text-danger is-size-7 test';
       postCommentFeedback.innerHTML = 'Please enter a comment';
     }
   }
 
+  showCommentInput = () => {
+    this.props.showCommentInput();
+  }
+
   render() {
+    const {
+      commentInputState,
+      highlightedText,
+      commentInput,
+    } = this.props;
     return (
       <div className="comment-area test">
         <div className="commentbox--owner justify-content__start test"
@@ -56,17 +53,25 @@ class CommentForm extends Component {
           <span className="add-comment-text test">Add comment...</span>
         </div>
         {
-          this.state.showCommentInput
+          commentInputState
           && (
             <div className="commentbox-input test">
               <form onSubmit={this.submit} className="test">
+                {
+                  highlightedText
+                  && <div className="comment-highlighted-textbox">
+                    <p className="highlighted-text">
+                      {highlightedText}
+                    </p>
+                  </div>
+                }
                 <textarea
                   className="textarea"
                   placeholder="comments here"
                   name="comment"
                   value={this.state.comment}
                   onChange={this.handleInputChange}
-                  ref={this.commentInput}
+                  ref={commentInput}
                   data-testid="comment-input"
                 />
                 <div className="mt-1 test">
@@ -87,7 +92,17 @@ class CommentForm extends Component {
 
 CommentForm.propTypes = {
   slug: PropTypes.string.isRequired,
-  postComment: PropTypes.func.isRequired
+  postComment: PropTypes.func.isRequired,
+  commentInputState: PropTypes.bool.isRequired,
+  commentInput: PropTypes.object.isRequired,
+  showCommentInput: PropTypes.func.isRequired,
+  highlightedText: PropTypes.string,
+  closeHighlight: PropTypes.func,
+};
+
+CommentForm.DefaultProps = {
+  highlightedText: null,
+  closeHighlight: null,
 };
 
 export default CommentForm;

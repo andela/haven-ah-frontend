@@ -8,11 +8,21 @@ describe('Comment form component', () => {
   it('should call the post comment function on submission', () => {
     const showInput = jest.fn();
     const postComment = jest.fn();
+    const showCommentInput = jest.fn();
+    const commentInputState = true;
+    const commentInput = React.createRef();
+    const highlightedText = '';
+    const closeHighlight = jest.fn();
 
     const { getByText, getByTestId } = render(
       <CommentForm
         slug="slug"
-        postComment={postComment} />
+        postComment={postComment}
+        showCommentInput={showCommentInput}
+        commentInputState={commentInputState}
+        commentInput={commentInput}
+        highlightedText={highlightedText}
+        closeHighlight={closeHighlight} />
     );
 
     const commentForm = getByText('Add comment...');
@@ -35,11 +45,21 @@ describe('Comment form component', () => {
   it('should not submit form on empty input', () => {
     const showInput = jest.fn();
     const postComment = jest.fn();
+    const showCommentInput = jest.fn();
+    const commentInputState = true;
+    const commentInput = React.createRef();
+    const highlightedText = '';
+    const closeHighlight = jest.fn();
 
     const { getByText, getByTestId } = render(
       <CommentForm
         slug="slug"
-        postComment={postComment} />
+        postComment={postComment}
+        showCommentInput={showCommentInput}
+        commentInputState={commentInputState}
+        commentInput={commentInput}
+        highlightedText={highlightedText}
+        closeHighlight={closeHighlight} />
     );
     const commentForm = getByText('Add comment...');
 

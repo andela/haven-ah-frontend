@@ -75,12 +75,22 @@ export const trendingArticles = {
       {
         id: 1,
         title: 'MY test article',
-        description: 'My test description'
+        description: 'My test description',
+        images: 'https://',
+        readtime: '500',
+        slug: 'a-slug-85988640950',
+        authorImage: 'https://',
+        authorName: 'presley',
       },
       {
         id: 2,
         title: 'A test article',
-        description: 'A test description'
+        description: 'My test description',
+        images: 'https://',
+        readtime: '500',
+        slug: 'a-slug-85988640950',
+        authorImage: 'https://',
+        authorName: 'presley',
       },
     ],
   }

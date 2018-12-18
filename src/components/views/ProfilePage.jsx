@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import Navbar from '../containers/navbar/navbar';
 import {
   userProfileAction,
-  userBookmarksRequest
+  userBookmarksRequest,
+  updateUserImage
 } from '../../actions/userProfileAction';
 import Bio from '../containers/profile/bio';
 import Bookmarks from '../containers/profile/bookmarks';
 import defaultImage from '../../../public/images/empty.jpeg';
 import { isLoggedIn } from '../../utilities/auth';
+import BioModal from '../containers/profile/bioModal';
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -17,7 +19,8 @@ class ProfilePage extends Component {
     this.state = {
       isBio: true,
       isBookmarks: false,
-      isArticles: false
+      isArticles: false,
+      displayModal: false
     };
   }
 
@@ -49,14 +52,33 @@ class ProfilePage extends Component {
     });
   }
 
+  displayModal = () => {
+    this.setState({
+      displayModal: true
+    });
+  }
+
+  hideModal = () => {
+    this.setState({
+      displayModal: false
+    });
+  }
+
   render() {
     const { profile, bookmarks } = this.props;
-    const { isBio, isBookmarks } = this.state;
+    const { isBio, isBookmarks, displayModal } = this.state;
     return (
-      < div className="layout" >
+      <div className="layout">
         <Navbar isLoggedIn={isLoggedIn()} />
         {profile
           && <div>
+            {displayModal
+              && <div>
+                <BioModal
+                  updateHandler={this.props.updateUserImage}
+                  username={profile.username}
+                  hideModal={this.hideModal} />
+              </div>}
             <section className="section mt-4">
               <div className="container">
                 <div className="profilebox">
@@ -67,7 +89,8 @@ class ProfilePage extends Component {
                           <div className="profilebox-user__image-container">
                             <img className="profilebox-user__image"
                               src={profile.imageUrl
-                                ? profile.imageUrl : defaultImage} />
+                                ? profile.imageUrl : defaultImage}
+                              onClick={this.displayModal} />
                           </div>
                           <div className="profilebox-user__details">
                             <div className="profilebox-user__name">
@@ -106,13 +129,13 @@ class ProfilePage extends Component {
                       <div className="profilebox-users">
                         <div className="profilebox-user__followers">
                           <span>FOLLOWERS {profile.followers
-                          && profile.followers.length > 0
+                            && profile.followers.length > 0
                             ? profile.followers.length : '0'}
                           </span>
                         </div>
                         <div className="profilebox-user__following">
                           <span>FOLLOWING {profile.followings
-                          && profile.followings.length > 0
+                            && profile.followings.length > 0
                             ? profile.followings.length : '0'}
                           </span>
                         </div>
@@ -145,10 +168,13 @@ class ProfilePage extends Component {
                   </div>
                   <div className="tabs-content">
                     <div className="bio">
-                      {isBio ? <Bio profile={profile} /> : null}
+                      {isBio
+                        ? <Bio
+                          {...this.props}
+                          profile={profile} /> : null}
                       {
                         isBookmarks
-                          ? <div className = "columns is-variable is-8 mt-3">
+                          ? <div className="columns is-variable is-8 mt-3">
                             <Bookmarks bookmarks={bookmarks} />
                           </div>
                           : null}
@@ -178,4 +204,4 @@ ProfilePage.propTypes = {
 };
 
 export default connect(mapStateToProps,
-  { userProfileAction, userBookmarksRequest })(ProfilePage);
+  { userProfileAction, userBookmarksRequest, updateUserImage })(ProfilePage);

@@ -24,7 +24,7 @@ describe('ProfilePage component', () => {
 
   it('should be rendered without crashing', () => {
     render(
-      <Router><BioComponent profile={profile} /></Router>
+      <Router><BioComponent store={profileStore} profile={profile} /></Router>
     );
   });
 

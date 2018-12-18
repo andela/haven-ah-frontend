@@ -2,17 +2,25 @@ import axios from 'axios';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import {
   USER_PROFILE_REQUEST,
-  USER_BOOKMARK_REQUEST
+  USER_BOOKMARK_REQUEST,
+  EDIT_PROFILE_REQUEST
 } from '../actionTypes/userProfileActionType';
 import {
   userProfileSuccessAction,
   userProfileFailureAction,
   userBookmarkSuccess,
-  userBookmarkFailure
+  userBookmarkFailure,
+  editProfileSuccessAction,
+  editProfileFailureAction
 } from '../actions/userProfileAction';
 import { getToken } from '../utilities/auth';
 
-// const token = localStorage.getItem('token');
+/**
+ * Function to make async call to
+ * retrieve a user profile
+ * @param {string} username
+ * @returns {object} promise
+ */
 const fetchUserProfile = (username) => {
   let headers = {};
   const token = getToken();
@@ -44,6 +52,20 @@ const fetchUserBookmarkedArticles = (username) => {
   }
   return axios
     .get(`${process.env.API_URL}/users/${username}/bookmarks`, headers);
+};
+
+/**
+ * Function to make async call to
+ * update a user profile
+ * @param {string} username
+ * @returns {object} promise
+ */
+const editUserProfile = ({ username, userData }) => {
+  return axios.put(`${process.env.API_URL}/users/${username}`, userData, {
+    headers: {
+      'x-access-token': getToken()
+    }
+  });
 };
 
 /**
@@ -93,4 +115,26 @@ export function* userBookmarksSaga(action) {
  */
 export function* watchUserBookmarks() {
   yield takeLatest(USER_BOOKMARK_REQUEST, userBookmarksSaga);
+}
+
+/**
+ * Generator function to edit a user profile
+ * actions
+ * @param {object} action
+ */
+export function* editUserSaga(action) {
+  try {
+    const response = yield call(editUserProfile, action.payload);
+    yield put(editProfileSuccessAction(response.data.data));
+  } catch (error) {
+    yield put(editProfileFailureAction(error.message));
+  }
+}
+
+/**
+ * A generator function to watch requests
+ * to edit a user profile
+ */
+export function* watchEditUser() {
+  yield takeLatest(EDIT_PROFILE_REQUEST, editUserSaga);
 }

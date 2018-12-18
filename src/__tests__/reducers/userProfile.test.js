@@ -2,14 +2,20 @@ import userProfileReducer from '../../reducers/userProfileReducer';
 import * as types from '../../actionTypes/userProfileActionType';
 
 describe('User profile reducer: ', () => {
+  const state = {
+    fetching: false,
+    profile: null,
+    bookmarks: null,
+    error: null,
+    updating: false,
+    userData: null,
+  };
+
   it('should have the correct default state', () => {
     expect(userProfileReducer(undefined, {
       type: 'non-existent type'
     })).toEqual({
-      fetching: false,
-      profile: null,
-      bookmarks: null,
-      error: null
+      ...state
     });
   });
 
@@ -17,10 +23,8 @@ describe('User profile reducer: ', () => {
     expect(userProfileReducer(undefined, {
       type: types.USER_PROFILE_REQUEST
     })).toEqual({
+      ...state,
       fetching: true,
-      profile: null,
-      bookmarks: null,
-      error: null
     });
   });
 
@@ -29,10 +33,8 @@ describe('User profile reducer: ', () => {
       type: types.USER_PROFILE_SUCCESS,
       payload: { firstName: 'sullivan' }
     })).toEqual({
-      fetching: false,
+      ...state,
       profile: { firstName: 'sullivan' },
-      bookmarks: null,
-      error: false
     });
   });
 
@@ -41,9 +43,7 @@ describe('User profile reducer: ', () => {
       type: types.USER_PROFILE_FAILURE,
       payload: 'Bad request'
     })).toEqual({
-      fetching: false,
-      profile: null,
-      bookmarks: null,
+      ...state,
       error: 'Bad request'
     });
   });
@@ -53,10 +53,8 @@ describe('User profile reducer: ', () => {
       type: types.USER_BOOKMARK_SUCCESS,
       payload: []
     })).toEqual({
-      fetching: false,
-      profile: null,
+      ...state,
       bookmarks: [],
-      error: null
     });
   });
 
@@ -65,9 +63,7 @@ describe('User profile reducer: ', () => {
       type: types.USER_BOOKMARK_FAILURE,
       payload: 'Bad request'
     })).toEqual({
-      fetching: false,
-      profile: null,
-      bookmarks: null,
+      ...state,
       error: 'Bad request'
     });
   });

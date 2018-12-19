@@ -159,6 +159,9 @@ h1, h2, h3, h4, h5, h6 {
 .mt-1{
     margin-top: 1rem;
 }
+.mt-2{
+    margin-top: 2rem;
+}
 
 .mt-3{
     margin-top: 3rem;
@@ -258,4 +261,58 @@ h1, h2, h3, h4, h5, h6 {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 a { color: inherit; } 
+
+/* profile pix */
+.profilebox-user__image {
+    height: 175px;
+    width: 175px;
+    border-radius: 100%;
+}
+.profilebox-user__details{
+    margin-top: 12px;
+    margin-left: 15px;
+}
+.profilebox-user__name {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
+.profilebox-username {
+  margin-top: 5px;
+    font-size: 18px; 
+font-weight:400;
+}
+.profilebox-email {
+   margin-top: 5px;
+    font-size: 18px; 
+    font-weight: 400;
+}
+.profilebox-user__bio {
+    line-height: 150%;
+}
+.profilebox-user__followers {
+    margin-top: 10px;
+    font-size: 18px
+}
+.profilebox-user__following {
+    margin-top: 13px;
+    font-size: 18px;
+}
+.profilebox-user__followers-btn {
+    margin-top: 13px;
+}
+.profilebox-user__socials-facebook {
+    color:$facebook-blue;
+    cursor: pointer;
+}
+.profilebox-user__socials-twitter {
+    color: $twitter-color;
+    cursor: pointer;
+}
+.profilebox-user__socials-google {
+    color:$red-color;
+    cursor: pointer;
+}
+

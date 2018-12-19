@@ -10,6 +10,7 @@ import followUserReducer from './followUser';
 import reactionReducer from './reactionReducer';
 import createArticleReducer from './createArticle';
 import bookmarkArticleReducer from './boomarkArticle';
+import resetPasswordReducer from './resetPassword';
 
 
 export default combineReducers({
@@ -23,5 +24,6 @@ export default combineReducers({
   following: followUserReducer,
   reaction: reactionReducer,
   createArticle: createArticleReducer,
-  bookmarkArticle: bookmarkArticleReducer
+  bookmarkArticle: bookmarkArticleReducer,
+  resetPassword: resetPasswordReducer
 });

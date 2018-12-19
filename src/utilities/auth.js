@@ -50,3 +50,20 @@ export const clearCredentials = () => {
   localStorage.removeItem('userid');
   localStorage.removeItem('username');
 };
+
+/**
+ * a function to set password reset token
+ * @param {*} token
+ */
+export const setResetToken = (token) => {
+  localStorage.setItem('resetToken', token);
+};
+
+/**
+ * a function to set password reset token
+ * @param {*} token
+ * @returns {string} token
+ */
+export const getResetToken = () => {
+  return localStorage.getItem('resetToken');
+};

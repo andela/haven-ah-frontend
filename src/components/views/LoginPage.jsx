@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { loginRequestAction } from '../../actions/loginActions';
+import { clearUpdateMessage } from '../../actions/passwordReset';
 import validateSignIn from '../../utilities/validateInput';
 import { getToken } from '../../utilities/auth';
 import AlertBox from '../containers/alerts/AlertBox';
@@ -19,6 +20,9 @@ class Login extends Component {
 
   componentDidMount() {
     this.focusInput.current.focus();
+    setTimeout(() => {
+      this.props.clearMessage();
+    }, 5000);
   }
 
   focusInput = React.createRef();
@@ -50,7 +54,9 @@ class Login extends Component {
 
   render() {
     const { email, password, errors } = this.state;
-    const { loggingIn, error, token } = this.props;
+    const {
+      loggingIn, error, token, updateSuccess
+    } = this.props;
 
     if (getToken()) {
       return (<Redirect to="/" />);
@@ -58,6 +64,10 @@ class Login extends Component {
 
     return (
       <div className="layout">
+        {
+          updateSuccess
+          && <AlertBox message="Password update successful" theme="success" />
+        }
         {
           error
           && <AlertBox message={error} theme="danger"/>
@@ -151,6 +161,13 @@ class Login extends Component {
                       <Link to="/signup"> Sign Up here</Link>
                     </span>
                   </p>
+                  <p className="mt-1 has-text-centered">
+                    <span>
+                      <Link to="/resetpassword/begin-password-reset">
+                        Forgot password?
+                      </Link>
+                    </span>
+                  </p>
                 </div>
               </div>
               <div className="column is-1" />
@@ -166,7 +183,9 @@ Login.propTypes = {
   loggingIn: PropTypes.bool.isRequired,
   loginAction: PropTypes.func.isRequired,
   token: PropTypes.string,
-  error: PropTypes.string
+  error: PropTypes.string,
+  clearMessage: PropTypes.func.isRequired,
+  updateSuccess: PropTypes.bool.isRequired
 };
 
 Login.defaultProps = {
@@ -179,13 +198,16 @@ const mapStateToProps = (state) => {
     loggingIn, error, token, payload
   } = state.loginUser;
 
+  const { updateSuccess } = state.resetPassword;
+
   return {
-    loggingIn, error, token, payload
+    loggingIn, error, token, payload, updateSuccess
   };
 };
 
 const mapDispatchToProps = {
   loginAction: loginRequestAction,
+  clearMessage: clearUpdateMessage
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

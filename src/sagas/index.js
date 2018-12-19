@@ -14,6 +14,11 @@ import watchPostComment from './postCommentSaga';
 
 import { watchBookmarkArticle, watchUnbookmarkArticle }
   from './bookmarkArticleSaga';
+import {
+  watchResetPasswordRequestSaga,
+  watchConfirmTokenRequestSaga,
+  watchUpdatePasswordRequestSaga
+} from './passwordResetSaga';
 /**
  * The root saga
  */
@@ -35,6 +40,9 @@ function* rootSaga() {
     watchPostComment(),
     watchBookmarkArticle(),
     watchUnbookmarkArticle(),
+    watchResetPasswordRequestSaga(),
+    watchConfirmTokenRequestSaga(),
+    watchUpdatePasswordRequestSaga()
   ]);
 }
 

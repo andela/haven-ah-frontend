@@ -60,7 +60,7 @@
 .comment-card__reply-text {
     right: 0;
     margin-right: 10px;
-    color: #a0a0a0;
+    color: $dark-gray;
 }
 
 .comment-highlighted-textbox {
@@ -74,6 +74,26 @@
         padding: 5px;
     }
 }
+.edited-replies:first-child(1) {
+    margin-top: 0px !important;
+    margin-bottom: 5px;
+}
+
+.edited-replies {
+  padding: 10px;
+  background-color: #fff;
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 160%;
+  border: 1px solid #eee;
+  border-radius: 2px;
+}
+.edited-replies__time {
+    padding-top: 5px;
+    font-size: 12px;
+    color: #777;
+    font-style: italic;
+}
 
 #comment-modal__title {
     font-size: 1rem;
@@ -82,7 +102,7 @@
 .replybox-card {
      padding: 10px;
     margin-top: 20px;
-    border: 1px solid #eee;
+    border: 1px solid $white-grey;
     border-radius: 5px;
 }
 
@@ -100,11 +120,11 @@
 
 .replybox-card__reply-text {
   margin-left: 30px;
-    color: #a0a0a0;
+    color: $dark-gray;
     cursor: pointer;
 }
 
 .replybox-card__reaction > i {
-    color: #a0a0a0;
+    color: $dark-gray;
     cursor: pointer;
 }

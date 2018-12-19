@@ -107,3 +107,30 @@ export const redirectSignup = {
     search: 'https://haven-ah-frontend.herokuapp.com/?token=ndjndjsfd',
   },
 };
+
+export const resetPasswordState = (
+  resetSuccess = false,
+  emailSuccess = false,
+  confirmSuccess = false,
+  updateSuccess = false,
+) => {
+  return {
+    resetPassword: {
+      resetSuccess,
+      emailSuccess,
+      confirmSuccess,
+      updateSuccess,
+      error: null,
+    }
+  };
+};
+
+export const location = {
+  search: 'blah=bloo'
+};
+
+export const dummyarticle = {
+  title: ' ',
+  body: 'dummy body',
+  description: 'dummy description'
+};

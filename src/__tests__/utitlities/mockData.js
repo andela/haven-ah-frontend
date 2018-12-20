@@ -56,3 +56,22 @@ export const profileMatch = {
     username: 'wisdom',
   }
 };
+
+export const profile = {
+  firstName: 'jiggy',
+  lastName: 'Wisdom',
+  username: 'wizzy',
+  bio: 'trying his best',
+  email: 'dummyemail',
+};
+
+export const article = {
+  id: 7,
+  slug: 'dummy',
+  body: 'dummy-body',
+  title: 'dummy title',
+  description: 'dummy descrition',
+  readtime: 450
+};
+
+export const bookmarks = [article];

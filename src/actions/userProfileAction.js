@@ -1,7 +1,11 @@
 import {
   USER_PROFILE_REQUEST,
   USER_PROFILE_SUCCESS,
-  USER_PROFILE_FAILURE
+  USER_PROFILE_FAILURE,
+  USER_BOOKMARK_FAILURE,
+  USER_BOOKMARK_SUCCESS,
+  USER_BOOKMARK_REQUEST,
+  REMOVE_BOOKMARK
 } from '../actionTypes/userProfileActionType';
 
 export const userProfileAction = username => ({
@@ -17,4 +21,24 @@ export const userProfileSuccessAction = profile => ({
 export const userProfileFailureAction = error => ({
   type: USER_PROFILE_FAILURE,
   payload: error,
+});
+
+export const userBookmarksRequest = username => ({
+  type: USER_BOOKMARK_REQUEST,
+  payload: username
+});
+
+export const userBookmarkSuccess = bookmarks => ({
+  type: USER_BOOKMARK_SUCCESS,
+  payload: bookmarks
+});
+
+export const userBookmarkFailure = error => ({
+  type: USER_BOOKMARK_FAILURE,
+  payload: error
+});
+
+export const removeBookmark = id => ({
+  type: REMOVE_BOOKMARK,
+  payload: id
 });

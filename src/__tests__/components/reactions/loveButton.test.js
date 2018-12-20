@@ -2,7 +2,7 @@ import React from 'react';
 import { cleanup, fireEvent, render } from 'react-testing-library';
 import { BrowserRouter as Router } from 'react-router-dom';
 import LoveButton
-  from '../../../components/containers/reactions/loveButton';
+  from '../../../components/containers/reactions/LoveButton';
 import store from '../../testUtilities/store';
 import {
   articleThread, articleThread2,
@@ -23,11 +23,11 @@ describe('loveButton Component', () => {
       <LoveButton store={articleThreadStore} />
     </Router>);
   });
-  it('should handle click for likes', () => {
+  it('should handle click for love', () => {
     const handleClick = jest.fn();
     const { getByTestId } = render(
       <Router>
-        <LoveButton store={articleThreadStore} />
+        <LoveButton store={articleThreadStore} onLove={jest.fn()} />
       </Router>
     );
     const love = getByTestId('love');

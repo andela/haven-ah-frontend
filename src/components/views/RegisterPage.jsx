@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { registerRequestAction } from '../../actions/registerAction';
 import AlertBox from '../containers/alerts/AlertBox';
@@ -58,11 +59,13 @@ class RegisterPage extends Component {
                 </div>
                 <div className="column is-4">
                   <div className="form__card">
-                    <h1 className="title is-3 has-text-centered">
-                        Welcome to Authors
-                      <span className="ah-orange">
-                        Haven
-                      </span>
+                    <h1 className="subtitle is-3 has-text-centered">
+                        Welcome to
+                      <p className="title">
+                        <Link to="/"> Authors
+                          <span className="ah-orange">Haven</span>
+                        </Link>
+                      </p>
                     </h1>
                     <p className="has-text-centered">
                   Lets set you up so you could start writing awesome articles
@@ -143,8 +146,10 @@ class RegisterPage extends Component {
                       </div>
                     </form>
                     <p className="mt-1 has-text-centered">
-                       Already Signed Up? <span>
-                        <a href="login.html">Sign In here</a>
+                       Already Signed Up?  <span>
+                        <Link
+                          to="/login"
+                          className="ah-orange">Sign In here</Link>
                       </span>
                     </p>
                   </div>

@@ -4,9 +4,6 @@ import mockAxios from '../../../__mocks__/axios';
 import rootSaga from '../../sagas';
 
 import {
-  LIKE_REQUEST,
-  LIKE_SUCCESS,
-  LIKE_FAILURE,
   LOVE_REQUEST,
   LOVE_SUCCESS,
   LOVE_FAILURE,
@@ -14,45 +11,6 @@ import {
 
 const sagaMiddleware = createSagaMiddleware();
 const mockStore = configureStore([sagaMiddleware]);
-
-describe('Like saga:', () => {
-  mockAxios.post.mockImplementationOnce(() => Promise.resolve({
-    data: {
-      status: 200,
-      message: 'success',
-      data: {
-        reactionType: 'Like'
-      }
-    }
-  }));
-
-  it('should execute saga workers', async (done) => {
-    const store = mockStore({});
-    sagaMiddleware.run(rootSaga);
-
-    const expectedActions = [
-      { type: LIKE_REQUEST },
-      {
-        type: LIKE_SUCCESS,
-        payload: {
-          status: 200,
-          message: 'success',
-          data: {
-            reactionType: 'Like'
-          }
-        }
-      }
-    ];
-
-    store.dispatch({ type: LIKE_REQUEST });
-
-    store.subscribe(() => {
-      const actions = store.getActions();
-      expect(actions).toEqual(expectedActions);
-      done();
-    });
-  });
-});
 
 describe('Love article saga:', () => {
   mockAxios.post.mockImplementationOnce(() => Promise.resolve({
@@ -93,23 +51,43 @@ describe('Love article saga:', () => {
   });
 });
 
-describe('Like saga failure:', () => {
+describe('Love comment saga:', () => {
   mockAxios.post.mockImplementationOnce(() => Promise.resolve({
+    data: {
+      status: 200,
+      message: 'success',
+      data: {
+        reactionType: 'Love'
+      },
+    }
   }));
-
   it('should execute saga workers', async (done) => {
     const store = mockStore({});
     sagaMiddleware.run(rootSaga);
 
     const expectedActions = [
-      { type: LIKE_REQUEST },
       {
-        type: LIKE_FAILURE,
-        error: 'Cannot read property \'status\' of undefined',
+        type: LOVE_REQUEST,
+        slug: 'slug',
+        commentId: 3,
+      },
+      {
+        type: LOVE_SUCCESS,
+        payload: {
+          status: 200,
+          message: 'success',
+          data: {
+            reactionType: 'Love'
+          },
+        }
       }
     ];
 
-    store.dispatch({ type: LIKE_REQUEST });
+    store.dispatch({
+      type: LOVE_REQUEST,
+      slug: 'slug',
+      commentId: 3,
+    });
 
     store.subscribe(() => {
       const actions = store.getActions();
@@ -120,8 +98,18 @@ describe('Like saga failure:', () => {
 });
 
 describe('Love article saga failure:', () => {
-  mockAxios.post.mockImplementationOnce(() => Promise.resolve({
-  }));
+  mockAxios.post.mockImplementationOnce((error) => {
+    error = {
+      response: {
+        status: 400,
+        message: 'Bad Request',
+        data: {
+          message: 'Hey, use the right URL'
+        }
+      }
+    };
+    return Promise.reject(error);
+  });
 
   it('should execute saga workers', async (done) => {
     const store = mockStore({});
@@ -131,7 +119,9 @@ describe('Love article saga failure:', () => {
       { type: LOVE_REQUEST },
       {
         type: LOVE_FAILURE,
-        error: 'Cannot read property \'status\' of undefined',
+        error: {
+          message: 'Hey, use the right URL'
+        }
       }
     ];
 

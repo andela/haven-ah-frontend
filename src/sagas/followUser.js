@@ -39,13 +39,9 @@ const unFollowUser = (username) => {
 export function* followUserSaga(action) {
   try {
     const response = yield call(followUser, action.username);
-    if (response.data.status !== 201) {
-      yield put(followUserFailure(response.data.data.message));
-    } else {
-      yield put(followUserSuccess(response.data));
-    }
+    yield put(followUserSuccess(response.data));
   } catch (error) {
-    yield put(followUserFailure(error.message));
+    yield put(followUserFailure(error.response.data));
   }
 }
 
@@ -56,13 +52,9 @@ export function* followUserSaga(action) {
 export function* unFollowUserSaga(action) {
   try {
     const response = yield call(unFollowUser, action.username);
-    if (response.data.status !== 200) {
-      yield put(unFollowUserFailure(response.data.data.message));
-    } else {
-      yield put(unFollowUserSuccess(response.data));
-    }
+    yield put(unFollowUserSuccess(response.data));
   } catch (error) {
-    yield put(unFollowUserFailure(error.message));
+    yield put(unFollowUserFailure(error.response.data));
   }
 }
 

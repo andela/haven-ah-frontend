@@ -50,7 +50,7 @@ class Login extends Component {
 
   render() {
     const { email, password, errors } = this.state;
-    const { loggingIn, error, token } = this.props;
+    const { loggingIn, error } = this.props;
 
     if (getToken()) {
       return (<Redirect to="/" />);
@@ -62,10 +62,6 @@ class Login extends Component {
           error
           && <AlertBox message={error} theme="danger"/>
         }
-        {
-          token
-          && <AlertBox message="Login successful" theme="success" />
-        }
         <div className="authentication">
           <div className="container">
             <div className="columns">
@@ -74,9 +70,13 @@ class Login extends Component {
               </div>
               <div className="column is-4">
                 <div className="form__card">
-                  <h1 className="title is-3 has-text-centered">
-                    Welcome back to Authors
-                    <span className="ah-orange">Haven</span>
+                  <h1 className="subtitle is-3 has-text-centered">
+                    Welcome back to
+                    <p className="title">
+                      <Link to="/"> Authors
+                        <span className="ah-orange">Haven</span>
+                      </Link>
+                    </p>
                   </h1>
                   <p className="has-text-centered">fill in your details</p>
 
@@ -148,7 +148,9 @@ class Login extends Component {
                   <p className="mt-1 has-text-centered">
                     Not yet Signed Up?
                     <span>
-                      <Link to="/signup"> Sign Up here</Link>
+                      <Link
+                        to="/signup"
+                        className="ah-orange"> Sign Up here</Link>
                     </span>
                   </p>
                 </div>

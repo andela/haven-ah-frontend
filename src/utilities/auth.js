@@ -1,3 +1,5 @@
+import jwtDecode from 'jwt-decode';
+
 /**
  * a function to set token
  * @param {*} token
@@ -5,6 +7,8 @@
 
 export const setToken = (token) => {
   localStorage.setItem('token', token);
+  const decoded = jwtDecode(token);
+  localStorage.setItem('userId', decoded.id);
 };
 
 /**

@@ -2,34 +2,28 @@ import axios from 'axios';
 
 import { takeLatest, call, put } from 'redux-saga/effects';
 import {
-  LIKE_REQUEST,
   LOVE_REQUEST,
 } from '../actionTypes/reactionActionTypes';
 import {
-  likeSuccess,
-  likeFailure,
   loveSuccess,
   loveFailure,
 } from '../actions/reactionAction';
-
+import LOVE from '../utilities/reactionConstants';
 
 const token = localStorage.getItem('token');
-const like = (slug) => {
-  return axios.post(`${process.env.API_URL}/articles/${slug}/reactions`,
-    {
-      reactionType: 'Like',
-    },
-    {
-      headers: {
-        'x-access-token': token,
-      },
-    });
-};
 
-const love = (slug) => {
-  return axios.post(`${process.env.API_URL}/articles/${slug}/reactions`,
+/**
+ * Love Comment
+ * @param {string} slug
+ * @param { number } commentId
+ * @returns {object} axios API call
+*/
+const loveComment = (slug, commentId) => {
+  return axios
+    .post(`${
+      process.env.API_URL}/articles/${slug}/comments/${commentId}/reactions/`,
     {
-      reactionType: 'Love',
+      reactionType: LOVE,
     },
     {
       headers: {
@@ -39,21 +33,21 @@ const love = (slug) => {
 };
 
 /**
- * The generator function for the Like saga
- * @param {object} action
- */
-export function* likeSaga(action) {
-  try {
-    const { data } = yield call(like, action.slug);
-    if (data.status !== 201 && data.status !== 200) {
-      yield put(likeFailure(data.message));
-    } else {
-      yield put(likeSuccess(data));
-    }
-  } catch (error) {
-    yield put(likeFailure(error.message));
-  }
-}
+ * Love article
+ * @param {string} slug
+ * @returns {object} axios API call
+*/
+const loveArticle = (slug) => {
+  return axios.post(`${process.env.API_URL}/articles/${slug}/reactions`,
+    {
+      reactionType: LOVE,
+    },
+    {
+      headers: {
+        'x-access-token': token,
+      },
+    });
+};
 
 /**
  * The generator function for the Love saga
@@ -61,27 +55,22 @@ export function* likeSaga(action) {
  */
 export function* loveSaga(action) {
   try {
-    const { data } = yield call(love, action.slug);
-    if (data.status !== 201 && data.status !== 200) {
-      yield put(loveFailure(data.message));
+    let response;
+    if (action.commentId) {
+      response = yield call(loveComment, action.slug, action.commentId);
     } else {
-      yield put(loveSuccess(data));
+      response = yield call(loveArticle, action.slug);
     }
+    const { data } = response;
+    yield put(loveSuccess(data));
   } catch (error) {
-    yield put(loveFailure(error.message));
+    yield put(loveFailure(error.response.data));
   }
-}
-
-/**
- * The generator watches the Like Saga for event.
- */
-export function* watchLike() {
-  yield takeLatest(LIKE_REQUEST, likeSaga);
 }
 
 /**
  * The generator watches the Love Saga for event.
  */
-export function* watchLove() {
+export default function* watchLove() {
   yield takeLatest(LOVE_REQUEST, loveSaga);
 }

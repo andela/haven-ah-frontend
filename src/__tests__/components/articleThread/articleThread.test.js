@@ -25,9 +25,11 @@ describe('ArticleThread component', () => {
 
   describe('Article thread conditional rendering', () => {
     it('should render article thread without images', () => {
-      render(<Provider store={articleThreadStore}><Router>
-        <ArticleThread match={match} />
-      </Router></Provider>);
+      render(<Provider
+        store={articleThreadStore}><Router>
+          <ArticleThread
+            match={match} />
+        </Router></Provider>);
     });
   });
 });

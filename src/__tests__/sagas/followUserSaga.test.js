@@ -86,8 +86,18 @@ describe('Unfollow user saga:', () => {
 });
 
 describe('Follow user saga:', () => {
-  mockAxios.post.mockImplementationOnce(() => Promise.resolve({
-  }));
+  mockAxios.post.mockImplementationOnce((error) => {
+    error = {
+      response: {
+        status: 400,
+        message: 'Bad Request',
+        data: {
+          message: 'Hey, use the right URL'
+        }
+      }
+    };
+    return Promise.reject(error);
+  });
 
   it('should execute saga workers', async (done) => {
     const store = mockStore({});
@@ -97,7 +107,9 @@ describe('Follow user saga:', () => {
       { type: FOLLOW_USER_REQUEST },
       {
         type: FOLLOW_USER_FAILURE,
-        error: 'Cannot read property \'status\' of undefined',
+        error: {
+          message: 'Hey, use the right URL'
+        },
       }
     ];
 
@@ -112,9 +124,18 @@ describe('Follow user saga:', () => {
 });
 
 describe('Unfollow user saga:', () => {
-  mockAxios.delete.mockImplementationOnce(() => Promise.resolve({
-
-  }));
+  mockAxios.delete.mockImplementationOnce((error) => {
+    error = {
+      response: {
+        status: 400,
+        message: 'Bad Request',
+        data: {
+          message: 'Hey, use the right URL'
+        }
+      }
+    };
+    return Promise.reject(error);
+  });
 
   it('should execute saga workers', async (done) => {
     const store = mockStore({});
@@ -124,7 +145,9 @@ describe('Unfollow user saga:', () => {
       { type: UNFOLLOW_USER_REQUEST },
       {
         type: UNFOLLOW_USER_FAILURE,
-        error: 'Cannot read property \'status\' of undefined',
+        error: {
+          message: 'Hey, use the right URL'
+        },
       }
     ];
 

@@ -31,10 +31,10 @@ class RecentArticles extends Component {
               </h1>
             </div>
           </div>
-          < div className = "columns is-variable is-8 mt-3">
+          <div className = "columns is-variable is-8 mt-3">
             {this.renderArticleCard(0, 3)}
           </div>
-          < div className = "columns is-variable is-8 mt-3">
+          <div className = "columns is-variable is-8 mt-3">
             {this.renderArticleCard(3, 6)}
           </div>
         </div>

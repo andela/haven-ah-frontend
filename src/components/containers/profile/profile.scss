@@ -1,0 +1,58 @@
+$black: #000;
+$color_1: #777;
+
+.bookmark--card {
+	margin-top: 15px;
+	border: 1px solid #eee;
+	border-radius: 10px;
+    transition: all ease-in-out 2s;
+    & .bookmark--card__image {
+        height: 200px;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    & .bookmark--card__details {
+        position: relative;
+        & .bookmark--card__details-title {
+            >h1 {
+                padding-top: 15px;
+            }
+            >a{
+                text-decoration: none;
+                color: $black
+            }
+        }
+        & .bookmark--card__details-desc {
+            >p {
+                padding-top: 10px;
+            }
+        }
+        & .bookmark--card__userdetails {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            bottom: -95px;
+            left: 0;
+            right: 0;
+            & .bookmark--card__details-authorname {
+                padding-left: 10px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+            & .bookmark--card__details-readtime {
+                margin-top: 10px;
+            }
+            & .bookmark--card__details-bookmark {
+                margin-top: 10px;
+                padding-right: 10px;
+                cursor: pointer;
+                &:hover {
+                    color: $color_1;
+                }
+            }
+        }
+    }
+}

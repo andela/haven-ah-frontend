@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { render, cleanup, fireEvent } from 'react-testing-library';
 import CommentSection
   from '../../../components/containers/comments/CommentSection';
@@ -22,12 +23,14 @@ describe('Comment section component', () => {
     const getComments = jest.fn();
 
     render(
-      <CommentSection fetching
-        comments={comments}
-        postComment={postComment}
-        getComments={getComments}
-        slug={'slug'}
-        newComment={{}} />
+      <Router>
+        <CommentSection fetching
+          comments={comments}
+          postComment={postComment}
+          getComments={getComments}
+          slug={'slug'}
+          newComment={{}} />
+      </Router>
     );
   });
 
@@ -36,12 +39,14 @@ describe('Comment section component', () => {
     const getComments = jest.fn();
 
     const { getByTestId } = render(
-      <CommentSection fetching={false}
-        comments={[]}
-        postComment={postComment}
-        getComments={getComments}
-        slug={'slug'}
-        newComment={{}} />
+      <Router>
+        <CommentSection fetching={false}
+          comments={[]}
+          postComment={postComment}
+          getComments={getComments}
+          slug={'slug'}
+          newComment={{}} />
+      </Router>
     );
 
     const btn = getByTestId('load-comments-btn');

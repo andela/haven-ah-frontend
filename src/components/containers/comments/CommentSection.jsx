@@ -14,8 +14,7 @@ class CommentSection extends Component {
     replies: [],
     displayModal: false,
     comments: [],
-    count: 0,
-    lastMaxScrollPos: 0
+    count: 1,
   }
 
   componentDidMount() {
@@ -75,13 +74,13 @@ class CommentSection extends Component {
 
   render() {
     const {
-      newComment, comments, slug, fetching,
+      comments, slug, fetching, commentsLoaded
     } = this.props;
 
     const { count } = this.state;
 
     return (
-      <div className="container">
+      <div className="container comment--section">
         {this.renderModal()}
         <div className="columns">
           <div className="column is-3" />
@@ -90,9 +89,27 @@ class CommentSection extends Component {
           </div>
           <div className="column is-3" />
         </div>
+        <div className="container">
+          {
+            comments
+            && comments.length > 0
+            && getArray(comments, (count * 10)).map((comment) => {
+              return (
+                <div className="columns" key={comment.id}>
+                  <div className="column is-2" />
+                  <div className="column">
+                    <CommentCard
+                      comment={comment}
+                      displayModal={this.displayModal} />
+                  </div>
+                  <div className="column is-2" />
+                </div>
+              );
+            })
+          }
+        </div>
         {
-          comments
-          && !comments.length && <div className="columns">
+          !commentsLoaded && <div className="columns">
             <div className="column is-3" />
             <div className="column">
               <button
@@ -110,43 +127,6 @@ class CommentSection extends Component {
             <div className="column is-3" />
           </div>
         }
-        <div className="container">
-          {
-            comments
-            && comments.length > 0
-            && comments
-              .sort((element, prevElement) => {
-                return (
-                  new Date(element.createdAt) - new Date(prevElement.createdAt)
-                );
-              })
-            && getArray(comments, (count * 10)).map((comment) => {
-              return (
-                <div className="columns" key={comment.id}>
-                  <div className="column is-2" />
-                  <div className="column">
-                    <CommentCard
-                      comment={comment}
-                      displayModal={this.displayModal} />
-                  </div>
-                  <div className="column is-2" />
-                </div>
-              );
-            })
-          }
-          {
-            newComment && <div className="columns">
-              <div className="column is-2" />
-              <div className="column">
-                <CommentCard
-                  comment={newComment}
-                  key={newComment.id}
-                  displayModal={this.displayModal} />
-              </div>
-              <div className="column is-2" />
-            </div>
-          }
-        </div>
       </div>
     );
   }
@@ -155,10 +135,10 @@ class CommentSection extends Component {
 CommentSection.propTypes = {
   slug: PropTypes.string.isRequired,
   fetching: PropTypes.bool,
-  newComment: PropTypes.object,
   comments: PropTypes.array,
   postComment: PropTypes.func,
   getComments: PropTypes.func,
+  commentsLoaded: PropTypes.bool,
 };
 
 export default CommentSection;

@@ -15,6 +15,7 @@ import AlertBox from '../alerts/AlertBox';
 import CommentSection from '../comments/CommentSection';
 import Preloader from './articlePreloader';
 import timeFormatter from '../../../helpers/timeFormatter';
+import ReportArticleModal from './reportArticleModal';
 import './articleThread.scss';
 import {
   fetchArticle,
@@ -22,8 +23,14 @@ import {
   getComments,
   postComment,
 } from '../../../actions/articleThread';
+import { isLoggedIn } from '../../../utilities/auth';
+
 
 class ArticleThread extends Component {
+  state = {
+    displayReportModal: false
+  }
+
   componentDidMount() {
     const {
       match: {
@@ -49,11 +56,20 @@ class ArticleThread extends Component {
     return true;
   }
 
+  showReportArticleModal = () => {
+    this.setState({ displayReportModal: true });
+  }
+
+  hideReportArticleModal = (event) => {
+    event.preventDefault();
+    this.setState({ displayReportModal: false });
+  }
+
   render() {
     const {
       fetchingComments,
       article, newComment, comments, match: { params: { slug, } },
-      getCommentsAction, postCommentAction
+      getCommentsAction, postCommentAction, commentsLoaded
     } = this.props;
 
     if (!article) {
@@ -72,7 +88,14 @@ class ArticleThread extends Component {
     const { following, reaction } = this.props;
     return (
       <div>
-        <section className="section">
+        {
+          this.state.displayReportModal
+          && <ReportArticleModal
+            slug={slug}
+            closeModal={this.hideReportArticleModal}
+          />
+        }
+        <section className="section mt-3">
           <div className="container">
             <div className="columns">
               <div className="column is-2" />
@@ -117,7 +140,7 @@ class ArticleThread extends Component {
                 {
                   following.error
                   && <AlertBox
-                    message={'You need to sign in first'} theme="danger"/>
+                    message={'You need to sign in first'} theme="danger" />
                 }
                 {
                   following.payload
@@ -135,7 +158,7 @@ class ArticleThread extends Component {
                       </span>
                     </div>
                     <div className="article--author__details-follow">
-                      { isOwner ? null : <FollowButton /> }
+                      {isOwner ? null : <FollowButton />}
                     </div>
                   </div>
                 </div>
@@ -145,7 +168,7 @@ class ArticleThread extends Component {
                 {
                   reaction.error
                   && <AlertBox
-                    message={'You need to sign in first'} theme="danger"/>
+                    message={'You need to sign in first'} theme="danger" />
                 }
                 {
                   reaction.payload
@@ -170,13 +193,22 @@ class ArticleThread extends Component {
                       <div className="article--reaction__like">
                         <i className="fa fa-bookmark-o fa-2x" />
                       </div>
+                      {
+                        !isOwner
+                        && isLoggedIn()
+                        && <div className="article--reaction__like">
+                          <i className="fa fa-flag-o"
+                            title="Report this article"
+                            onClick={this.showReportArticleModal} />
+                        </div>
+                      }
                     </div>
                     <div className="is-inline article--social-share">
                       <FacebookShareButton
                         url={shareUrl}
                         quote={article.title}
                         className="article__share-button">
-                        <FacebookIcon size={32} round/>
+                        <FacebookIcon size={32} round />
                       </FacebookShareButton>
 
                       <TwitterShareButton
@@ -216,6 +248,7 @@ class ArticleThread extends Component {
             getComments={getCommentsAction}
             slug={slug}
             newComment={newComment}
+            commentsLoaded={commentsLoaded}
           />
         </section>
       </div>
@@ -229,7 +262,8 @@ const mapStateToProps = state => ({
   reaction: state.reaction,
   comments: state.articleThread.comments,
   newComment: state.articleThread.newComment,
-  fetchingComments: state.articleThread.fetchingComments
+  fetchingComments: state.articleThread.fetchingComments,
+  commentsLoaded: state.articleThread.commentsLoaded
 });
 
 ArticleThread.propTypes = {
@@ -243,7 +277,8 @@ ArticleThread.propTypes = {
   postCommentAction: PropTypes.func,
   comments: PropTypes.array,
   newComment: PropTypes.object,
-  fetchingComments: PropTypes.bool
+  fetchingComments: PropTypes.bool,
+  commentsLoaded: PropTypes.bool
 };
 
 ArticleThread.defaultProps = {

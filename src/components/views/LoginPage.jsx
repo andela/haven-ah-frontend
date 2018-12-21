@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { loginRequestAction } from '../../actions/loginActions';
+import { loginRequestAction, cleanUp } from '../../actions/loginActions';
 import validateSignIn from '../../utilities/validateInput';
 import { getToken } from '../../utilities/auth';
 import AlertBox from '../containers/alerts/AlertBox';
@@ -19,6 +19,11 @@ class Login extends Component {
 
   componentDidMount() {
     this.focusInput.current.focus();
+  }
+
+  componentWillUnmount() {
+    const { cleanUpAction } = this.props;
+    cleanUpAction();
   }
 
   focusInput = React.createRef();
@@ -165,6 +170,7 @@ class Login extends Component {
 Login.propTypes = {
   loggingIn: PropTypes.bool.isRequired,
   loginAction: PropTypes.func.isRequired,
+  cleanUpAction: PropTypes.func.isRequired,
   token: PropTypes.string,
   error: PropTypes.string
 };
@@ -186,6 +192,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   loginAction: loginRequestAction,
+  cleanUpAction: cleanUp,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

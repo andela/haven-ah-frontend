@@ -2,12 +2,14 @@ import {
   loginRequestAction,
   loginSuccessAction,
   loginFailureAction,
+  cleanUp,
 } from '../../actions/loginActions';
 
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  CLEAN_UP,
 } from '../../actionTypes/loginActionType';
 
 describe('Login request action handler', () => {
@@ -33,6 +35,14 @@ describe('Login request failure action handler', () => {
     expect(loginFailureAction({ message: 'error' })).toEqual({
       type: LOGIN_FAILURE,
       payload: 'error'
+    });
+  });
+});
+
+describe('Login cleanup action', () => {
+  it('should return an object with action type clean up', () => {
+    expect(cleanUp()).toEqual({
+      type: CLEAN_UP,
     });
   });
 });

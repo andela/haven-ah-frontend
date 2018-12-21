@@ -1,4 +1,4 @@
-import validateSignin from '../../utilities/validateInput';
+import validateSignin, { validateReport } from '../../utilities/validateInput';
 
 
 describe('Validate Signin function', () => {
@@ -30,5 +30,39 @@ describe('Validate Signin function', () => {
     const errors = validateSignin(payload);
     expect(errors)
       .toHaveProperty('email', 'please provide a valid email address');
+  });
+});
+
+describe('Validate report article function', () => {
+  it('should return an empty object if values are supplied', () => {
+    const payload = {
+      complaintType: 'Abuse',
+      complaintBody: 'An abusive report'
+    };
+    const errors = validateReport(payload);
+    expect(errors).toEqual({});
+  });
+
+  it('should return an object with complaint type error', () => {
+    const payload = {
+      complaintType: '',
+      complaintBody: 'An abusive report'
+    };
+
+    const errors = validateReport(payload);
+    expect(Object.keys(errors).length).toEqual(1);
+    expect(errors).toHaveProperty('complaintType');
+    expect(errors.complaintType).toEqual('please select a complaint type');
+  });
+
+  it('should return an object with errors', () => {
+    const payload = {
+      complaintType: '',
+      complaintBody: ''
+    };
+
+    const errors = validateReport(payload);
+    expect(Object.keys(errors).length).toEqual(2);
+    expect(errors).toHaveProperty('complaintBody');
   });
 });

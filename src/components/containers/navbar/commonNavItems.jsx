@@ -38,6 +38,8 @@ const CommonNavItems = () => {
       <Link className="navbar-item" to="#">
       Top Stories
       </Link>
+      <Link className="navbar-item fa fa-search fonticons-20 icon-search"
+        to="search-article"/>
     </div>
   );
 };

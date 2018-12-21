@@ -11,6 +11,7 @@ import reactionReducer from './reactionReducer';
 import createArticleReducer from './createArticle';
 import bookmarkArticleReducer from './boomarkArticle';
 
+import searchReducer from './searchReducer';
 
 export default combineReducers({
   heroArticle: heroArticleReducer,
@@ -23,5 +24,6 @@ export default combineReducers({
   following: followUserReducer,
   reaction: reactionReducer,
   createArticle: createArticleReducer,
-  bookmarkArticle: bookmarkArticleReducer
+  bookmarkArticle: bookmarkArticleReducer,
+  searchArticle: searchReducer,
 });

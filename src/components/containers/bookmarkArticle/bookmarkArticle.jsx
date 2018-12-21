@@ -9,7 +9,6 @@ import {
 class BookmarkArticle extends Component {
   constructor(props) {
     super(props);
-
     const { bookmarkFlag } = this.props.article;
     this.state = {
       bookmarkFlag,

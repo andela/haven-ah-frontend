@@ -1,0 +1,75 @@
+.searchbar {
+  margin-top: 100px;
+  border-radius: 30px;
+  border: 1px solid #eee;
+}
+.borderless {
+  border: 0px !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.search-btn {
+  background-color: #E47E08;
+  color: #fff;
+}
+.search-btn:hover {
+  color: #eee;
+}
+.control--padding {
+  padding-left: 18px;
+}
+.loading-icon {
+  color: #E47E08;
+  text-align: center;
+}
+.search--card {
+  margin-top: 15px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+.search--card_image {
+   height: 200px;
+   width: 100%;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+.search--card_details {
+   position: relative;
+}
+.search--card_details-title > h1 {
+   padding-top: 15px;
+}
+.search--card_image {
+   border-top-left-radius: 10px;
+   border-bottom-left-radius: 10px;
+}
+.search--card_details-desc > p {
+   padding-top: 10px;
+}
+.search--card_userdetails {
+   display: flex;
+   justify-content: space-between;
+   position: absolute;
+   bottom: -85px;
+   left: 0;
+   right: 0;
+}
+.search--card_details-authorname {
+   padding-left: 10px;
+   margin-top: 10px;
+   cursor: pointer;
+}
+.search--card_details-readtime {
+   margin-top: 10px;
+}
+.search--card_details-bookmark {
+   margin-top: 10px;
+   padding-right: 10px;
+   cursor: pointer;
+}
+.search--card_details-bookmark:hover {
+   color: #777;
+} 
+.title {
+  margin-top: 20px;
+}

@@ -65,7 +65,9 @@ h1, h2, h3, h4, h5, h6 {
 .icon-grey {
     color: $icon-grey;
 }
-
+.icon-search {
+    margin-top: 10px;
+}
 .icon-red {
     color: $red-color;
 }
@@ -179,7 +181,12 @@ h1, h2, h3, h4, h5, h6 {
 .mb-1 {
     margin-bottom: 1rem;
 }
-
+.mb-2 {
+    margin-bottom: 2rem;
+}
+.mb-3 {
+    margin-bottom: 3rem;
+}
 .mr-s {
     margin-right: 5px;
 }

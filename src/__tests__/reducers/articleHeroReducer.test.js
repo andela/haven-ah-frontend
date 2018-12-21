@@ -7,7 +7,7 @@ describe('Article Hero reducer: ', () => {
       type: 'non-existent type'
     })).toEqual({
       fetching: false,
-      article: null,
+      articles: [],
       error: null
     });
   });
@@ -17,7 +17,7 @@ describe('Article Hero reducer: ', () => {
       type: types.HERO_ARTICLE_REQUEST
     })).toEqual({
       fetching: true,
-      article: null,
+      articles: [],
       error: null
     });
   });
@@ -28,7 +28,7 @@ describe('Article Hero reducer: ', () => {
       article: []
     })).toEqual({
       fetching: false,
-      article: [],
+      articles: [],
       error: null
     });
   });
@@ -39,7 +39,7 @@ describe('Article Hero reducer: ', () => {
       error: 'Bad request'
     })).toEqual({
       fetching: false,
-      article: null,
+      articles: [],
       error: 'Bad request'
     });
   });

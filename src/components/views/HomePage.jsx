@@ -16,10 +16,10 @@ class HomePage extends PureComponent {
   render() {
     return (
       <div className="layout">
-        <header className="banner">
+        <header>
           <Navbar navStyle="transparent" isLoggedIn={isLoggedIn()} />
-          <HeroSection />
         </header>
+        <HeroSection />
         <TrendingSection />
         <FeaturedAuthor />
         <RecentArticles />

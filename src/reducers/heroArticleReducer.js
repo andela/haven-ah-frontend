@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   fetching: false,
-  article: null,
+  articles: [],
   error: null
 };
 
@@ -15,10 +15,10 @@ export default (state = initialState, action) => {
   case HERO_ARTICLE_REQUEST:
     return { ...state, fetching: true, error: null };
   case HERO_ARTICLE_SUCCESS:
-    return { ...state, fetching: false, article: action.article };
+    return { ...state, fetching: false, articles: action.article };
   case HERO_ARTICLE_FAILURE:
     return {
-      ...state, fetching: false, article: null, error: action.error,
+      ...state, fetching: false, articles: [], error: action.error,
     };
   default:
     return state;

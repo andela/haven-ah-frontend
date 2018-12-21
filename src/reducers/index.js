@@ -13,7 +13,7 @@ import bookmarkArticleReducer from './boomarkArticle';
 
 
 export default combineReducers({
-  heroArticle: heroArticleReducer,
+  heroArticles: heroArticleReducer,
   trendingArticles: trendingArticlesReducer,
   featuredAuthor: featuredAuthorReducer,
   recentArticles: recentArticlesReducer,

@@ -3,6 +3,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  CLEAN_UP,
 } from '../../actionTypes/loginActionType';
 
 
@@ -47,6 +48,17 @@ describe('Login reducer', () => {
     })).toEqual({
       loggingIn: false,
       error: 'error',
+      token: '',
+      payload: {}
+    });
+  });
+
+  it('should revert to innitial state', () => {
+    expect(loginReducer(undefined, {
+      type: CLEAN_UP,
+    })).toEqual({
+      loggingIn: false,
+      error: '',
       token: '',
       payload: {}
     });

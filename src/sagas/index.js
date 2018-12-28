@@ -11,9 +11,10 @@ import { watchLike, watchLove } from './reactionSaga';
 import watchPostArticleSaga from './createArticleSaga';
 import watchGetComments from './getCommentsSaga';
 import watchPostComment from './postCommentSaga';
-
+import watchReportArticle from './reportArticleSaga';
 import { watchBookmarkArticle, watchUnbookmarkArticle }
   from './bookmarkArticleSaga';
+
 /**
  * The root saga
  */
@@ -35,6 +36,7 @@ function* rootSaga() {
     watchPostComment(),
     watchBookmarkArticle(),
     watchUnbookmarkArticle(),
+    watchReportArticle(),
   ]);
 }
 

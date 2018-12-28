@@ -1,13 +1,4 @@
-$color_1: #333;
-$color_2: red;
-$color_3: #777;
-$color_4: #ddd;
-$color_5: #E47E08;
-$background_color_1: #ddd;
-$background_color_2: #eee;
-$background_color_3: #fff;
-$background_color_4: #E2E2E2;
-$border_color_1: #E47E08;
+@import '../../../../public/styles/colors.scss';
 
 @keyframes loading {
 	100% {
@@ -79,12 +70,12 @@ blockquote {
 	margin-left: 6px;
 	font-size: 12px;
 	padding: 6px 10px;
-	background-color: $background_color_1;
+	background-color: $color_4;
 	color: $color_1;
 	border-radius: 30px;
 	cursor: pointer;
 	&:hover {
-		background-color: $background_color_2;
+		background-color: $white-grey;
 	}
 }
 .article--tags {
@@ -96,7 +87,7 @@ blockquote {
 .article--reaction__love {
 	>i {
 		font-size: 20px;
-		color: $color_2;
+		color: $red-color;
 		margin-right: 20px;
 		cursor: pointer;
 	}
@@ -104,7 +95,7 @@ blockquote {
 .article--reaction__like {
 	padding-left: 40px;
 	>i {
-		color: $color_3;
+		color: $medium-gray;
 		font-size: 20px;
 		margin-right: 20px;
 		cursor: pointer;
@@ -115,18 +106,37 @@ blockquote {
 	}
 }
 .article--details__readtime {
-	color: $color_5;
+	color: $orange-color;
 }
 .article--details__time {
 	margin-right: 10px;
 	position: relative;
 	bottom: -5px;
 }
+
 .article--button__follow {
-	background-color: $background_color_3;
-	border-color: $border_color_1;
-	color: $color_5;
+	background-color: $white-color;
+	border-color: $orange-color;
+	color: $orange-color;
 }
+
+.btn--outline {
+    background-color: $white-color;
+    border-color: $orange-color;
+    color: $orange-color;
+}
+
+.btn--orange {
+	background-color: $orange-color;
+    border-color: $white-color;
+    color: $white-color;
+}
+
+input {
+	color: $orange-color;
+	background-color: $orange-color;
+}
+
 .loading {
 	position: relative;
 	background-color: $background_color_4;
@@ -158,4 +168,29 @@ blockquote {
 	> button {
 	display: inline-block;
 	background-color: #777;
+}
+
+.complaint {
+	padding: 12px;
+	background-color: #fff;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.12);
+	transition: all 0.25s ease-in-out;
+	border-radius: 5px;
+}
+
+.complaint--type > .control {
+margin-top: 2px;
+font-size: 12px;
+}
+
+.complaint--form {
+   margin-top: 20px;
+}
+
+.report-modal {
+	width: 100px
+}
+
+.radio--value {
+	margin-left: 10px;
 }

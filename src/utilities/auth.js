@@ -28,6 +28,12 @@ export const setUsername = (message) => {
 };
 
 /**
+ * Get current user username
+ * @returns{string} Username
+ */
+export const getUsername = () => localStorage.getItem('username');
+
+/**
  * A function to check logged in state
  * @returns {boolean} login state
  */

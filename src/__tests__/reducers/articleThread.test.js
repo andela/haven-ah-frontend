@@ -10,6 +10,7 @@ describe('Single article reducer: ', () => {
     error: null,
     comments: [],
     newComment: null,
+    commentsLoaded: false,
     commentError: ''
   };
 
@@ -72,6 +73,7 @@ describe('Single article reducer: ', () => {
       payload: comments
     })).toEqual({
       ...state,
+      commentsLoaded: true,
       comments,
     });
   });
@@ -102,7 +104,7 @@ describe('Single article reducer: ', () => {
       payload: {}
     })).toEqual({
       ...state,
-      newComment: {},
+      comments: [{}],
     });
   });
 

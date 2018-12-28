@@ -37,6 +37,10 @@ export const articleThread = {
       message: 'Message',
     }
   },
+  reportArticle: {
+    reporting: false,
+    message: 'Message'
+  }
 };
 
 export const articleThread2 = {
@@ -106,4 +110,12 @@ export const redirectSignup = {
   location: {
     search: 'https://haven-ah-frontend.herokuapp.com/?token=ndjndjsfd',
   },
+};
+
+export const reportArticle = {
+  reportArticle: {
+    reporting: false,
+    message: 'New message',
+    error: 'Error message'
+  }
 };

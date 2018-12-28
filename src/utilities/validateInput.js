@@ -14,4 +14,15 @@ const validateSignIn = ({ email, password }) => {
   return errors;
 };
 
+export const validateReport = ({ complaintType, complaintBody }) => {
+  const errors = {};
+  if (!complaintType) {
+    errors.complaintType = 'please select a complaint type';
+  }
+  if (!complaintBody) {
+    errors.complaintBody = 'please enter a message';
+  }
+  return errors;
+};
+
 export default validateSignIn;

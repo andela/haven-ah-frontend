@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  CLEAN_UP
 } from '../actionTypes/loginActionType';
 
 const initialState = {
@@ -23,6 +24,8 @@ const loginReducer = (state = initialState, action) => {
     return {
       ...state, loggingIn: false, token: '', error: action.payload
     };
+  case CLEAN_UP:
+    return { ...initialState };
   default:
     return state;
   }

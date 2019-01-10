@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getUsername } from '../../../utilities/auth';
 
 const userNavOptions = [
-  'Profile',
   'Settings',
   'Logout'
 ];
@@ -21,6 +21,9 @@ const UserNavItems = () => {
           <i className="fa fa-user-circle" />
         </Link>
         <div className="navbar-dropdown is-boxed">
+          <Link className="navbar-item" to={`/users/${getUsername()}/profile`}>
+            Profile
+          </Link>
           {userNavOptions.map((item, index) => {
             return (
               <Link key={index} className="navbar-item" to={`/${item.toLowerCase()}`}>
